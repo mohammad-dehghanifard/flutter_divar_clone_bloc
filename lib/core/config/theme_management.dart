@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_divar_clone_bloc/core/common/constants/ui_colors.dart';
 import 'package:flutter_divar_clone_bloc/gen/fonts.gen.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class ThemeManagement {
   ThemeManagement._();
@@ -14,6 +15,18 @@ class ThemeManagement {
     ),
     textTheme: const TextTheme(
       bodyMedium: TextStyle(color: UiColors.blackTextColor)
+    ),
+    inputDecorationTheme: InputDecorationTheme(
+      filled: true,
+      fillColor: UiColors.whiteColor,
+      enabledBorder: OutlineInputBorder(
+        borderSide: BorderSide.none,
+        borderRadius: BorderRadius.circular(4.w),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderSide: BorderSide.none,
+        borderRadius: BorderRadius.circular(4.w),
+      ),
     )
   );
 }
