@@ -45,7 +45,6 @@ dependencies:
     sdk: flutter
   intl: any
   responsive_sizer: ^3.3.1
-  get_it: ^8.0.0
   bloc: ^8.1.4
 
 dev_dependencies:
