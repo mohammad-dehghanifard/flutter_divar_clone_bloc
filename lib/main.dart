@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
           Locale('fa'),
         ],
         locale: const Locale("fa"),
-        title: 'Divar',
+        title: 'Niaz',
         theme: ThemeManagement.lightTheme,
         routes: RouteManagement.routes,
       ),
