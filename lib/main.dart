@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_divar_clone_bloc/core/config/routes_management.dart';
 import 'package:flutter_divar_clone_bloc/core/config/theme_management.dart';
+import 'package:flutter_divar_clone_bloc/core/utils/storages/shared_preferences_manager.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 
-void main() {
+void main()  {
+  SharedPreferencesManager().preferences;
   runApp(const MyApp());
 }
 
