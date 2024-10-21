@@ -7,9 +7,10 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 
-void main()  {
-  SharedPreferencesManager().preferences;
-  injectDi();
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await SharedPreferencesManager().init();
+  await injectDi();
   runApp(const MyApp());
 }
 

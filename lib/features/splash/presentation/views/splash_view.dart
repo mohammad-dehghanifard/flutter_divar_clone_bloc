@@ -1,11 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_divar_clone_bloc/core/common/constants/ui_colors.dart';
+import 'package:flutter_divar_clone_bloc/features/splash/presentation/cubit/splash_cubit.dart';
+import 'package:flutter_divar_clone_bloc/features/splash/presentation/cubit/splash_status.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-class SplashView extends StatelessWidget {
-  static String routeName = "/";
+class SplashView extends StatefulWidget {
   const SplashView({super.key});
+
+  @override
+  State<SplashView> createState() => _SplashViewState();
+}
+
+class _SplashViewState extends State<SplashView> {
+
+  @override
+  void initState() {
+    BlocProvider.of<SplashCubit>(context).loadingSplash();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -19,24 +33,30 @@ class SplashView extends StatelessWidget {
       color: UiColors.primaryColor,
     );
 
-    return  Scaffold(
+    return Scaffold(
       body: SafeArea(
           child: SizedBox(
-            width: double.infinity,
-            height: double.infinity,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Spacer(),
-                appNameText,
-                appDescriptionText,
-                const Spacer(),
-                loading,
-                SizedBox(height: 4.w)
-              ],
-            ),
-          )
-      ),
+        width: double.infinity,
+        height: double.infinity,
+        child: BlocListener<SplashCubit, SplashState>(
+          listener: (context, state) {
+            if(state.splashStatus is SplashLoadingCompleted) {
+              BlocProvider.of<SplashCubit>(context).navigateToNextPage(context: context);
+            }
+          },
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Spacer(),
+              appNameText,
+              appDescriptionText,
+              const Spacer(),
+              loading,
+              SizedBox(height: 4.w)
+            ],
+          ),
+        ),
+      )),
     );
   }
 }

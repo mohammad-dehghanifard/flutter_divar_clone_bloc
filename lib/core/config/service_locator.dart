@@ -3,6 +3,6 @@ import 'package:get_it/get_it.dart';
 
 final serviceLocator = GetIt.instance;
 
-void injectDi() {
+injectDi() {
   serviceLocator.registerSingleton<SplashCubit>(SplashCubit());
 }
