@@ -43,7 +43,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
         hintStyle: TextStyle(fontSize: 14.sp,color: UiColors.greyTextColor,fontWeight: FontWeight.w500),
         suffixIcon: Padding(
           padding: EdgeInsets.all(2.5.w),
-          child: widget.keyboardType != TextInputType.visiblePassword? SvgPicture.asset(widget.iconPath!) :
+          child: widget.keyboardType != TextInputType.visiblePassword? widget.iconPath == null ? null:SvgPicture.asset(widget.iconPath!) :
           GestureDetector(
             onTap: () {
               setState(() {

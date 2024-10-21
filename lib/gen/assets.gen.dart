@@ -10,6 +10,9 @@
 class $AssetsSvgsGen {
   const $AssetsSvgsGen();
 
+  /// File path: assets/svgs/arrow_down.svg
+  String get arrowDown => 'assets/svgs/arrow_down.svg';
+
   /// File path: assets/svgs/category.svg
   String get category => 'assets/svgs/category.svg';
 
@@ -42,6 +45,7 @@ class $AssetsSvgsGen {
 
   /// List of all assets
   List<String> get values => [
+        arrowDown,
         category,
         location,
         logout,

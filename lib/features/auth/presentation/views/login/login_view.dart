@@ -3,6 +3,7 @@ import 'package:flutter_divar_clone_bloc/core/common/constants/distances.dart';
 import 'package:flutter_divar_clone_bloc/core/common/constants/ui_colors.dart';
 import 'package:flutter_divar_clone_bloc/core/common/widgets/custom_button_widget.dart';
 import 'package:flutter_divar_clone_bloc/core/common/widgets/text_field_widget.dart';
+import 'package:flutter_divar_clone_bloc/features/auth/presentation/views/register/register_page.dart';
 import 'package:flutter_divar_clone_bloc/features/auth/presentation/widgets/auth_app_bar_widget.dart';
 import 'package:flutter_divar_clone_bloc/gen/assets.gen.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -26,7 +27,9 @@ class LoginView extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text("حساب کاربری ندارید؟",style: TextStyle(fontSize: 16.sp,color: UiColors.blackTextColor,fontWeight: FontWeight.w900),),
-        TextButton(onPressed: () {}, child: Text("ثبت نام کنید!",style: TextStyle(fontSize: 16.sp,color: UiColors.primaryColor,fontWeight: FontWeight.w900)))
+        TextButton(onPressed: () {
+          Navigator.pushReplacementNamed(context, RegisterPage.routeName);
+        }, child: Text("ثبت نام کنید!",style: TextStyle(fontSize: 16.sp,color: UiColors.primaryColor,fontWeight: FontWeight.w900)))
       ],
     );
 
