@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_divar_clone_bloc/core/common/constants/distances.dart';
 import 'package:flutter_divar_clone_bloc/core/common/constants/ui_colors.dart';
 import 'package:flutter_divar_clone_bloc/core/common/widgets/custom_button_widget.dart';
+import 'package:flutter_divar_clone_bloc/features/auth/presentation/views/login/login_page.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class AuthView extends StatelessWidget {
+  static String routeName = "/auth";
   const AuthView({super.key});
 
   @override
@@ -14,7 +16,9 @@ class AuthView extends StatelessWidget {
     // app Description
     final Widget appDescriptionText = Text("هرچی بخوای رو تو نیاز پیدا میکنی!",style: TextStyle(fontSize: 14.sp,fontWeight: FontWeight.w400,color: UiColors.greyTextColor));
     // login btn
-    final Widget loginButton = CustomButtonWidget(onTap: () {  }, text: 'ورود',);
+    final Widget loginButton = CustomButtonWidget(onTap: () {
+      Navigator.pushNamed(context, LoginPage.routeName);
+    }, text: 'ورود',);
     // register btn
     final Widget registerButton = CustomButtonWidget(mode: ButtonMode.border, onTap: () {  }, text: 'ساخت حساب کاربری',);
     return Scaffold(

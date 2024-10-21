@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_divar_clone_bloc/features/auth/presentation/views/auth_page.dart';
+import 'package:flutter_divar_clone_bloc/features/auth/presentation/views/auth_view.dart';
+import 'package:flutter_divar_clone_bloc/features/auth/presentation/views/login/login_page.dart';
 import 'package:flutter_divar_clone_bloc/features/splash/presentation/views/splash_page.dart';
 
 class RouteManagement {
@@ -7,6 +8,7 @@ class RouteManagement {
 
   static Map<String, Widget Function(BuildContext)> routes = {
     SplashPage.routeName: (context) => const SplashPage(),
-    AuthPage.routeName: (context) => const AuthPage(),
+    AuthView.routeName: (context) => const AuthView(),
+    LoginPage.routeName: (context) => const LoginPage(),
   };
 }
