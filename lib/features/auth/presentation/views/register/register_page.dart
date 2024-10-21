@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_divar_clone_bloc/features/auth/presentation/cubit/register/register_cubit.dart';
 import 'package:flutter_divar_clone_bloc/features/auth/presentation/views/register/register_view.dart';
 
 class RegisterPage extends StatelessWidget {
@@ -7,6 +9,9 @@ class RegisterPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const RegisterView();
+    return BlocProvider(
+        create: (context) => RegisterCubit(),
+      child: const RegisterView(),
+    );
   }
 }

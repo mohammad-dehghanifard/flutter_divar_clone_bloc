@@ -12,7 +12,7 @@ class RegisterRequest {
   String? validateUserName(String? value) {
     if(value!.isEmpty || value == "") {
       return "لطفا یک نام کاربری وارد کنید!";
-    } else if(value.length >= 3) {
+    } else if(value.length <= 3) {
       return "نام کاربری شما بسیار کوتاه است!";
     }
     return null;

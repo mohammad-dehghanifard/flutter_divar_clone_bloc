@@ -27,6 +27,14 @@ class ThemeManagement {
         borderSide: BorderSide.none,
         borderRadius: BorderRadius.circular(4.w),
       ),
+      errorBorder: OutlineInputBorder(
+        borderSide: const BorderSide(color: UiColors.primaryColor),
+        borderRadius: BorderRadius.circular(4.w),
+      ),
+      focusedErrorBorder: OutlineInputBorder(
+        borderSide: const BorderSide(color: UiColors.primaryColor),
+        borderRadius: BorderRadius.circular(4.w),
+      ),
     )
   );
 }
