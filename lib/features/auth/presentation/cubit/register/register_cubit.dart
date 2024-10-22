@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:flutter_divar_clone_bloc/core/common/data/responses/province_response.dart';
 import 'package:flutter_divar_clone_bloc/core/common/resources/data_state.dart';
 import 'package:flutter_divar_clone_bloc/core/utils/storages/shared_preferences_manager.dart';
 import 'package:flutter_divar_clone_bloc/features/auth/data/requests/register_request.dart';
@@ -12,6 +13,20 @@ class RegisterCubit extends Cubit<RegisterState> {
   RegisterCubit() : super(RegisterState(registerStatus: RegisterInitial()));
 
   final AuthRepository _authRepository = AuthRepository();
+
+  Future<void> fetchProvinces() async {
+    emit(state.copyWith(newStatus: RegisterLoadingPageStatus()));
+    final DataState<ProvinceResponse> result = await _authRepository.fetchProvinceApiCall();
+
+    if(result is DataSuccess) {
+      emit(state.copyWith(newStatus: RegisterPageLoadingCompletedStatus(provinces: result.data!.provinces!)));
+    }
+
+    if(result is DataFailed) {
+      emit(state.copyWith(newStatus: RegisterPageLoadingErrorStatus()));
+      print(result.error);
+    }
+  }
 
   Future<void> register({required RegisterRequest request}) async {
     emit(state.copyWith(newStatus: RegisterLoadingStatus()));

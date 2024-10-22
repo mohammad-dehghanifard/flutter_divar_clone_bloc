@@ -12,7 +12,8 @@ class TextFieldWidget extends StatefulWidget {
     this.controller, 
     this.validator,
     this.readOnly = false,
-    this.maxLines = 1
+    this.maxLines = 1,
+    this.onTap
   });
 
   final String? hintText;
@@ -22,6 +23,7 @@ class TextFieldWidget extends StatefulWidget {
   final String? Function(String?)? validator;
   final bool readOnly;
   final int maxLines;
+  final Function()? onTap;
   @override
   State<TextFieldWidget> createState() => _TextFieldWidgetState();
 }
@@ -32,6 +34,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      onTap: widget.onTap,
       maxLines: widget.maxLines,
       controller: widget.controller,
       validator: widget.validator,

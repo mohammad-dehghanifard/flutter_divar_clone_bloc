@@ -1,16 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_divar_clone_bloc/core/common/constants/distances.dart';
 import 'package:flutter_divar_clone_bloc/core/common/constants/ui_colors.dart';
 import 'package:flutter_divar_clone_bloc/core/common/widgets/custom_button_widget.dart';
 import 'package:flutter_divar_clone_bloc/core/common/widgets/text_field_widget.dart';
 import 'package:flutter_divar_clone_bloc/features/auth/data/requests/register_request.dart';
+import 'package:flutter_divar_clone_bloc/features/auth/presentation/cubit/register/register_cubit.dart';
+import 'package:flutter_divar_clone_bloc/features/auth/presentation/cubit/register/register_status.dart';
 import 'package:flutter_divar_clone_bloc/features/auth/presentation/views/login/login_page.dart';
 import 'package:flutter_divar_clone_bloc/features/auth/presentation/widgets/auth_app_bar_widget.dart';
 import 'package:flutter_divar_clone_bloc/gen/assets.gen.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-class RegisterView extends StatelessWidget {
+class RegisterView extends StatefulWidget {
   const RegisterView({super.key});
+
+  @override
+  State<RegisterView> createState() => _RegisterViewState();
+}
+
+class _RegisterViewState extends State<RegisterView> {
+
+
+  @override
+  void initState() {
+    /// api call
+    BlocProvider.of<RegisterCubit>(context).fetchProvinces();
+    super.initState();
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -24,12 +42,35 @@ class RegisterView extends StatelessWidget {
     // input phone number widget
     final Widget mobileNumberTextField = TextFieldWidget(controller: registerRequest.mobileTextController,validator: registerRequest.validateMobileNumber,hintText: "شماره موبایل",iconPath: Assets.svgs.mobile);
     // select city and province cards
-    final Widget selectProvinceAndCityCards = Row(
-      children: [
-        Expanded(child: TextFieldWidget(hintText: "استان",readOnly: true,iconPath: Assets.svgs.arrowDown)),
-        SizedBox(width: 4.w),
-        Expanded(child: TextFieldWidget(hintText: "شهر",readOnly: true,iconPath: Assets.svgs.arrowDown)),
-      ],
+    final Widget selectProvinceAndCityCards = BlocBuilder<RegisterCubit, RegisterState>(
+      builder: (context, state) {
+        return Row(
+          children: [
+            Expanded(
+                child: TextFieldWidget(
+                    onTap: () {
+                      if(state.registerStatus is RegisterPageLoadingCompletedStatus) {
+                        final currentState = state.registerStatus as RegisterPageLoadingCompletedStatus;
+                        showModalBottomSheet(context: context, builder: (context) {
+                          return ListView.builder(
+                            itemCount: currentState.provinces.length,
+                              itemBuilder: (context, index) => Text(currentState.provinces[index].name!),
+                          );
+                        },);
+                      }
+                    },
+                    hintText: "استان",
+                    readOnly: true,
+                    iconPath: Assets.svgs.arrowDown)),
+            SizedBox(width: 4.w),
+            Expanded(
+                child: TextFieldWidget(
+                    hintText: "شهر",
+                    readOnly: true,
+                    iconPath: Assets.svgs.arrowDown)),
+          ],
+        );
+      },
     );
     // input address widget
     final Widget addressTextField = TextFieldWidget(controller: registerRequest.addressTextController,validator: registerRequest.validateAddress,hintText: "آدرس",maxLines: 3);
@@ -54,39 +95,57 @@ class RegisterView extends StatelessWidget {
       ],
     );
 
+
+
     return Scaffold(
       body: SafeArea(
           child: Padding(
             padding: const EdgeInsets.all(Distances.bodyMargin),
             child: SingleChildScrollView(
-              child: Column(
-                children: [
-                    appBar,
-                  SizedBox(height: 8.w),
-                  Form(
-                      key: formKey,
-                      child: Column(
-                    children: [
-                      usernameTextField,
-                      SizedBox(height: 4.w),
-                      mobileNumberTextField,
-                      SizedBox(height: 4.w),
-                      selectProvinceAndCityCards,
-                      SizedBox(height: 4.w),
-                      addressTextField,
-                      SizedBox(height: 4.w),
-                      passWordTextField,
-                      SizedBox(height: 4.w),
-                      repeatPassWordTextField,
-                    ],
-                  )),
-                  SizedBox(height: 4.w),
-                  registerBtn,
-                  SizedBox(height: 4.w),
-                  loginAccount
-                ],
-              ),
-            ),
+              child: BlocConsumer<RegisterCubit, RegisterState>(
+
+                listener: (context, state) {
+                  if(state.registerStatus is RegisterPageLoadingErrorStatus) {
+                    Navigator.pop(context);
+                  }
+                },
+                 builder: (context, state) {
+                    if(state.registerStatus is RegisterLoadingPageStatus) {
+                      return const Center(child: CircularProgressIndicator());
+                    } else if(state.registerStatus is RegisterPageLoadingCompletedStatus) {
+                      return Column(
+                        children: [
+                          appBar,
+                          SizedBox(height: 8.w),
+                          Form(
+                              key: formKey,
+                              child: Column(
+                                children: [
+                                  usernameTextField,
+                                  SizedBox(height: 4.w),
+                                  mobileNumberTextField,
+                                  SizedBox(height: 4.w),
+                                  selectProvinceAndCityCards,
+                                  SizedBox(height: 4.w),
+                                  addressTextField,
+                                  SizedBox(height: 4.w),
+                                  passWordTextField,
+                                  SizedBox(height: 4.w),
+                                  repeatPassWordTextField,
+                                ],
+                              )),
+                          SizedBox(height: 4.w),
+                          registerBtn,
+                          SizedBox(height: 4.w),
+                          loginAccount
+                        ],
+                      );
+                    } else {
+                      throw Exception("state invalidate...");
+                    }
+            },
+          ),
+        ),
           )
       ),
     );
