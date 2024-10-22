@@ -12,4 +12,9 @@ class AuthApiProvider {
     return response;
   }
 
+  Future<Response<dynamic>> provideProvinceApi() async {
+    final response = await _webservice.getRequest(endPoint: EndPoints.provinceEndPoints);
+    return response;
+  }
+
 }
