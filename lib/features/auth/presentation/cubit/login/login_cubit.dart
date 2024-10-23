@@ -26,6 +26,7 @@ class LoginCubit extends Cubit<LoginState> {
 
     if(result is DataFailed) {
       emit(state.copyWith(newStatus: LoginError(errorMessage: result.error ?? "خطای ناشناخته با پشتیبانی تماس بگیرید!")));
+      emit(state.copyWith(newStatus: LoginInitial()));
     }
 
   }
