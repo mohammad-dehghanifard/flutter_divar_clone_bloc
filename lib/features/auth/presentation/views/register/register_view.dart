@@ -109,7 +109,7 @@ class _RegisterViewState extends State<RegisterView> {
               if(registerRequest.cityId != null) {
                 registerCubit.register(request: registerRequest);
               } else {
-                ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("خطا")));
+
               }
 
             }

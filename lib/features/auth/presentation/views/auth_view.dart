@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_divar_clone_bloc/core/common/constants/distances.dart';
 import 'package:flutter_divar_clone_bloc/core/common/constants/ui_colors.dart';
 import 'package:flutter_divar_clone_bloc/core/common/widgets/custom_button_widget.dart';
+import 'package:flutter_divar_clone_bloc/core/utils/widgets/show_snack_bar_widget.dart';
 import 'package:flutter_divar_clone_bloc/features/auth/presentation/views/login/login_page.dart';
 import 'package:flutter_divar_clone_bloc/features/auth/presentation/views/register/register_page.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
