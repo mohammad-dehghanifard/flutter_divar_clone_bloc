@@ -6,6 +6,7 @@ import 'package:flutter_divar_clone_bloc/core/common/data/model/province_model.d
 import 'package:flutter_divar_clone_bloc/core/common/widgets/custom_button_widget.dart';
 import 'package:flutter_divar_clone_bloc/core/common/widgets/province_and_city_bottom_sheet_widget.dart';
 import 'package:flutter_divar_clone_bloc/core/common/widgets/text_field_widget.dart';
+import 'package:flutter_divar_clone_bloc/core/utils/widgets/show_snack_bar_widget.dart';
 import 'package:flutter_divar_clone_bloc/features/auth/data/requests/register_request.dart';
 import 'package:flutter_divar_clone_bloc/features/auth/presentation/cubit/register/register_cubit.dart';
 import 'package:flutter_divar_clone_bloc/features/auth/presentation/cubit/register/register_status.dart';
@@ -109,7 +110,13 @@ class _RegisterViewState extends State<RegisterView> {
               if(registerRequest.cityId != null) {
                 registerCubit.register(request: registerRequest);
               } else {
-
+                showCustomSnackBar(
+                    context: context,
+                    snackBar: showSnackBarWidget(
+                        message: "لطفا استان و شهر خود را انتخاب کنید!",
+                        mode: SnackBarMode.error
+                    )
+                );
               }
 
             }
@@ -138,6 +145,24 @@ class _RegisterViewState extends State<RegisterView> {
               listener: (context, state) {
                 if(state.registerStatus is RegisterPageLoadingErrorStatus) {
                   Navigator.pop(context);
+                  showCustomSnackBar(
+                      context: context,
+                      snackBar: showSnackBarWidget(
+                          message: "ارتباط با سرور برقرار نشد، لطفا مجدد امتحان کنید!",
+                          mode: SnackBarMode.error
+                      )
+                  );
+                }
+
+                if(state.registerStatus is RegisterErrorStatus) {
+                  final errorMessage = (state.registerStatus as RegisterErrorStatus).message;
+                  showCustomSnackBar(
+                      context: context,
+                      snackBar: showSnackBarWidget(
+                          message: errorMessage ?? "خطای ناشناخته، لطفا با پشتیبانی تماس بگیرید.",
+                          mode: SnackBarMode.error
+                      )
+                  );
                 }
               },
                builder: (context, state) {
