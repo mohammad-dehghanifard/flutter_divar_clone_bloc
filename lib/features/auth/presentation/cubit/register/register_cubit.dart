@@ -30,18 +30,19 @@ class RegisterCubit extends Cubit<RegisterState> {
   }
 
   Future<void> register({required RegisterRequest request}) async {
-    emit(state.copyWith(newStatus: RegisterLoadingStatus()));
+    emit(state.copyWith(newStatus: RegisterLoadingButtonStatus(isLoading: true)));
     final DataState<AuthResponse> result = await _authRepository.registerUserApiCall(request: request);
 
     if(result is DataSuccess) {
       final prefs = SharedPreferencesManager();
       // saveToken
       await prefs.saveString(key: "token", value: result.data!.token!);
-      print(result.data!.token!);
+      emit(state.copyWith(newStatus: RegisterCompletedStatus()));
     }
 
     if(result is DataFailed) {
-      print(result.error);
+      emit(state.copyWith(newStatus: RegisterLoadingButtonStatus(isLoading: false)));
+      emit(state.copyWith(newStatus: RegisterErrorStatus(message: result.error)));
     }
   }
 

@@ -6,8 +6,6 @@ class RegisterRequest {
   final TextEditingController addressTextController = TextEditingController();
   final TextEditingController passWordTextController = TextEditingController();
   final TextEditingController confirmPassWordTextController = TextEditingController();
-  final TextEditingController provinceNameController = TextEditingController();
-  final TextEditingController cityNameController = TextEditingController();
   int? cityId;
 
   // validators
@@ -40,7 +38,7 @@ class RegisterRequest {
   String? validatePassWord(String? value) {
     if(value!.isEmpty || value == "") {
       return "لطفا یک رمز عبور وارد کنید";
-    } else if(value.length >= 8) {
+    } else if(value.length <= 8) {
       return "رمز عبور شما بسیار کوتاه است!";
     }
     return null;

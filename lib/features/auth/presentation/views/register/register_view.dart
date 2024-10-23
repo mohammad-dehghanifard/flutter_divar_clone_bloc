@@ -98,6 +98,7 @@ class _RegisterViewState extends State<RegisterView> {
     // register btn
     final Widget registerBtn = BlocBuilder<RegisterCubit, RegisterState>(
       builder: (context, state) {
+        final registerCubit = BlocProvider.of<RegisterCubit>(context);
         bool isLoading = false;
         if (state.registerStatus is RegisterLoadingButtonStatus) {
           isLoading = (state.registerStatus as RegisterLoadingButtonStatus).isLoading;
@@ -105,6 +106,11 @@ class _RegisterViewState extends State<RegisterView> {
         return CustomButtonWidget(
           onTap: () {
             if (formKey.currentState!.validate()) {
+              if(registerRequest.cityId != null) {
+                registerCubit.register(request: registerRequest);
+              } else {
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("خطا")));
+              }
 
             }
           },
