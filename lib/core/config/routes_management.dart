@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_divar_clone_bloc/features/auth/presentation/views/auth_view.dart';
 import 'package:flutter_divar_clone_bloc/features/auth/presentation/views/login/login_page.dart';
 import 'package:flutter_divar_clone_bloc/features/auth/presentation/views/register/register_page.dart';
+import 'package:flutter_divar_clone_bloc/features/home/presentation/views/home_page.dart';
 import 'package:flutter_divar_clone_bloc/features/splash/presentation/views/splash_page.dart';
 
 class RouteManagement {
@@ -12,5 +13,6 @@ class RouteManagement {
     AuthView.routeName: (context) => const AuthView(),
     LoginPage.routeName: (context) => const LoginPage(),
     RegisterPage.routeName: (context) => const RegisterPage(),
+    HomePage.routeName: (context) => const HomePage(),
   };
 }
