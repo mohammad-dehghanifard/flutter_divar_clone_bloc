@@ -34,7 +34,6 @@ class RegisterRequest {
     return null;
   }
 
-
   String? validatePassWord(String? value) {
     if(value!.isEmpty || value == "") {
       return "لطفا یک رمز عبور وارد کنید";
