@@ -10,5 +10,6 @@ class UiColors {
   static const blackColor = Color(0xFF000000);
   static const whiteColor = Color(0xFFFFFFFF);
   static const greyTextColor = Color(0xFF959595);
+  static const deActiveNavBarItemColor = Color(0xFF959595);
   static const scaffoldBgColor = Color(0xFFF5F5F5);
 }

@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_divar_clone_bloc/core/common/constants/ui_colors.dart';
+import 'package:flutter_divar_clone_bloc/core/common/widgets/custom_button_widget.dart';
 import 'package:flutter_divar_clone_bloc/features/home/presentation/views/home_page.dart';
+import 'package:flutter_divar_clone_bloc/features/main/presentation/widgets/custom_navigation_bar.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class MainView extends StatelessWidget {
   const MainView({super.key});
@@ -13,7 +17,10 @@ class MainView extends StatelessWidget {
       const TestView(color: Colors.green),
     ];
     return  Scaffold(
+      bottomNavigationBar: CustomNavigationBar(),
         body: PageView(
+          onPageChanged: (value) {
+          },
           children: pages,
         ),
     );
