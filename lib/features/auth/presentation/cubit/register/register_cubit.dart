@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:flutter_divar_clone_bloc/core/common/data/model/province_model.dart';
 import 'package:flutter_divar_clone_bloc/core/common/data/responses/province_response.dart';
 import 'package:flutter_divar_clone_bloc/core/common/resources/data_state.dart';
 import 'package:flutter_divar_clone_bloc/core/utils/storages/shared_preferences_manager.dart';
@@ -42,6 +43,14 @@ class RegisterCubit extends Cubit<RegisterState> {
     if(result is DataFailed) {
       print(result.error);
     }
+  }
+
+  void changeProvince({required ProvinceModel province,required CityModel city}) {
+    if(state.registerStatus is RegisterPageLoadingCompletedStatus){
+      final provinces = (state.registerStatus as RegisterPageLoadingCompletedStatus).provinces;
+      emit(state.copyWith(newStatus: RegisterPageLoadingCompletedStatus(province: province.name!,city: city,provinces: provinces)));
+    }
+
   }
 
 }

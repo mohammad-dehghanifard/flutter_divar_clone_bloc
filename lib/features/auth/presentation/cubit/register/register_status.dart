@@ -12,8 +12,10 @@ final class RegisterSuccessStatus extends RegisterStatus {}
 final class RegisterLoadingPageStatus extends RegisterStatus {}
 
 final class RegisterPageLoadingCompletedStatus extends RegisterStatus {
-  RegisterPageLoadingCompletedStatus({required this.provinces});
+  RegisterPageLoadingCompletedStatus( {required this.provinces,this.province, this.city});
   final List<ProvinceModel> provinces;
+  final String? province;
+  final CityModel? city;
 }
 
 final class RegisterPageLoadingErrorStatus extends RegisterStatus {}

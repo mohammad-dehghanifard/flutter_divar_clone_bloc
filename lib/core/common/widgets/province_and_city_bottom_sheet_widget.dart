@@ -4,10 +4,11 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 
 class ProvinceAndCityBottomSheetWidget extends StatelessWidget {
   const ProvinceAndCityBottomSheetWidget({
-    super.key, required this.provinceList,
+    super.key, required this.provinceList, required this.onCityTap,
   });
 
   final List<ProvinceModel> provinceList;
+  final Function(ProvinceModel province,CityModel city) onCityTap;
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
@@ -19,7 +20,9 @@ class ProvinceAndCityBottomSheetWidget extends StatelessWidget {
           child: ExpansionTile(
             title: Text(province.name!),
             children: List.generate(province.cities!.length, (index) {
-              return TextButton(onPressed: () {}, child: Text(province.cities![index].name!));
+              return TextButton(onPressed: () {
+                onCityTap(province,province.cities![index]);
+              }, child: Text(province.cities![index].name!));
             },),
           ),
         );

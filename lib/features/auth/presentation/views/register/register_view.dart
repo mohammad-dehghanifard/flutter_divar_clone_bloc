@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_divar_clone_bloc/core/common/constants/distances.dart';
 import 'package:flutter_divar_clone_bloc/core/common/constants/ui_colors.dart';
+import 'package:flutter_divar_clone_bloc/core/common/data/model/province_model.dart';
 import 'package:flutter_divar_clone_bloc/core/common/widgets/custom_button_widget.dart';
 import 'package:flutter_divar_clone_bloc/core/common/widgets/province_and_city_bottom_sheet_widget.dart';
 import 'package:flutter_divar_clone_bloc/core/common/widgets/text_field_widget.dart';
@@ -45,25 +46,43 @@ class _RegisterViewState extends State<RegisterView> {
     // select city and province cards
     final Widget selectProvinceAndCityCards = BlocBuilder<RegisterCubit, RegisterState>(
       builder: (context, state) {
+        final registerCubit = BlocProvider.of<RegisterCubit>(context);
+        String provinceHint = "استان";
+        String cityHint = "شهر";
+
+        if (state.registerStatus is RegisterPageLoadingCompletedStatus) {
+          final selectedState = state.registerStatus as RegisterPageLoadingCompletedStatus;
+          provinceHint = selectedState.province ?? "استان";
+          cityHint = selectedState.city?.name ?? "شهر";
+        }
+        void selectProvinceAndCity() {
+          if(state.registerStatus is RegisterPageLoadingCompletedStatus) {
+            final currentState = state.registerStatus as RegisterPageLoadingCompletedStatus;
+            showModalBottomSheet(context: context, builder: (context) {
+              return ProvinceAndCityBottomSheetWidget(
+                provinceList: currentState.provinces,
+                onCityTap: (ProvinceModel province, CityModel city) {
+                  registerCubit.changeProvince(province: province, city: city);
+                  registerRequest.cityId = city.id!;
+                  Navigator.pop(context);
+                },);
+            },);
+          }
+        }
+
         return Row(
           children: [
             Expanded(
                 child: TextFieldWidget(
-                    onTap: () {
-                      if(state.registerStatus is RegisterPageLoadingCompletedStatus) {
-                        final currentState = state.registerStatus as RegisterPageLoadingCompletedStatus;
-                        showModalBottomSheet(context: context, builder: (context) {
-                          return ProvinceAndCityBottomSheetWidget(provinceList: currentState.provinces);
-                        },);
-                      }
-                    },
-                    hintText: "استان",
+                    onTap: () => selectProvinceAndCity(),
+                    hintText: provinceHint,
                     readOnly: true,
                     iconPath: Assets.svgs.arrowDown)),
             SizedBox(width: 4.w),
             Expanded(
                 child: TextFieldWidget(
-                    hintText: "شهر",
+                    onTap: () => selectProvinceAndCity(),
+                    hintText: cityHint,  // به روز رسانی hint شهر
                     readOnly: true,
                     iconPath: Assets.svgs.arrowDown)),
           ],
@@ -97,19 +116,22 @@ class _RegisterViewState extends State<RegisterView> {
       body: SafeArea(
           child: Padding(
             padding: const EdgeInsets.all(Distances.bodyMargin),
-            child: SingleChildScrollView(
-              child: BlocConsumer<RegisterCubit, RegisterState>(
-
-                listener: (context, state) {
-                  if(state.registerStatus is RegisterPageLoadingErrorStatus) {
-                    Navigator.pop(context);
-                  }
-                },
-                 builder: (context, state) {
-                    if(state.registerStatus is RegisterLoadingPageStatus) {
-                      return const Center(child: CircularProgressIndicator());
-                    } else if(state.registerStatus is RegisterPageLoadingCompletedStatus) {
-                      return Column(
+            child: BlocConsumer<RegisterCubit, RegisterState>(
+            
+              listener: (context, state) {
+                if(state.registerStatus is RegisterPageLoadingErrorStatus) {
+                  Navigator.pop(context);
+                }
+              },
+               builder: (context, state) {
+                  if(state.registerStatus is RegisterLoadingPageStatus) {
+                    return const SizedBox(
+                      width: double.infinity,
+                      height: double.infinity,
+                        child: Center(child: CircularProgressIndicator()));
+                  } else if(state.registerStatus is RegisterPageLoadingCompletedStatus) {
+                    return SingleChildScrollView(
+                      child: Column(
                         children: [
                           appBar,
                           SizedBox(height: 8.w),
@@ -135,13 +157,13 @@ class _RegisterViewState extends State<RegisterView> {
                           SizedBox(height: 4.w),
                           loginAccount
                         ],
-                      );
-                    } else {
-                      throw Exception("state invalidate...");
-                    }
-            },
-          ),
-        ),
+                      ),
+                    );
+                  } else {
+                    throw Exception("state invalidate...");
+                  }
+                        },
+                      ),
           )
       ),
     );

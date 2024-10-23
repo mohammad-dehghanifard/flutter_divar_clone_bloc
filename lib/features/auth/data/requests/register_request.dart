@@ -6,6 +6,8 @@ class RegisterRequest {
   final TextEditingController addressTextController = TextEditingController();
   final TextEditingController passWordTextController = TextEditingController();
   final TextEditingController confirmPassWordTextController = TextEditingController();
+  final TextEditingController provinceNameController = TextEditingController();
+  final TextEditingController cityNameController = TextEditingController();
   int? cityId;
 
   // validators
