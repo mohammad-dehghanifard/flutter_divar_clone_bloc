@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_divar_clone_bloc/core/utils/storages/shared_preferences_manager.dart';
 import 'package:flutter_divar_clone_bloc/features/auth/presentation/views/auth_view.dart';
-import 'package:flutter_divar_clone_bloc/features/home/presentation/views/home_page.dart';
+import 'package:flutter_divar_clone_bloc/features/main/presentation/views/main_page.dart';
 import 'package:flutter_divar_clone_bloc/features/splash/presentation/cubit/splash_status.dart';
 
 part 'splash_state.dart';
@@ -21,7 +21,7 @@ class SplashCubit extends Cubit<SplashState> {
     final prefs = SharedPreferencesManager().preferences;
     final token = prefs!.getString("token");
     if(token != null) {
-      Navigator.pushReplacementNamed(context,HomePage.routeName);
+      Navigator.pushReplacementNamed(context,MainPage.routeName);
     } else {
       Navigator.pushReplacementNamed(context,AuthView.routeName);
     }
