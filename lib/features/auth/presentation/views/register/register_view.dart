@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_divar_clone_bloc/core/common/constants/distances.dart';
 import 'package:flutter_divar_clone_bloc/core/common/constants/ui_colors.dart';
 import 'package:flutter_divar_clone_bloc/core/common/widgets/custom_button_widget.dart';
+import 'package:flutter_divar_clone_bloc/core/common/widgets/province_and_city_bottom_sheet_widget.dart';
 import 'package:flutter_divar_clone_bloc/core/common/widgets/text_field_widget.dart';
 import 'package:flutter_divar_clone_bloc/features/auth/data/requests/register_request.dart';
 import 'package:flutter_divar_clone_bloc/features/auth/presentation/cubit/register/register_cubit.dart';
@@ -52,10 +53,7 @@ class _RegisterViewState extends State<RegisterView> {
                       if(state.registerStatus is RegisterPageLoadingCompletedStatus) {
                         final currentState = state.registerStatus as RegisterPageLoadingCompletedStatus;
                         showModalBottomSheet(context: context, builder: (context) {
-                          return ListView.builder(
-                            itemCount: currentState.provinces.length,
-                              itemBuilder: (context, index) => Text(currentState.provinces[index].name!),
-                          );
+                          return ProvinceAndCityBottomSheetWidget(provinceList: currentState.provinces);
                         },);
                       }
                     },
@@ -94,8 +92,6 @@ class _RegisterViewState extends State<RegisterView> {
         }, child: Text("وارد شوید!",style: TextStyle(fontSize: 16.sp,color: UiColors.primaryColor,fontWeight: FontWeight.w900)))
       ],
     );
-
-
 
     return Scaffold(
       body: SafeArea(
@@ -151,3 +147,4 @@ class _RegisterViewState extends State<RegisterView> {
     );
   }
 }
+
