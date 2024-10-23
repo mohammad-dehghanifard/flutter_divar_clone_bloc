@@ -20,3 +20,8 @@ final class RegisterPageLoadingCompletedStatus extends RegisterStatus {
 
 final class RegisterPageLoadingErrorStatus extends RegisterStatus {}
 
+final class RegisterLoadingButtonStatus extends RegisterStatus {
+  RegisterLoadingButtonStatus({required this.isLoading});
+  final bool isLoading;
+}
+

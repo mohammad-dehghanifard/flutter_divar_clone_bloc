@@ -96,11 +96,23 @@ class _RegisterViewState extends State<RegisterView> {
     // input repeat pass widget
     final Widget repeatPassWordTextField = TextFieldWidget(controller: registerRequest.confirmPassWordTextController,validator: registerRequest.validateRepeatPassWord,hintText: "تکرار رمز عبور",keyboardType: TextInputType.visiblePassword);
     // register btn
-    final Widget registerBtn = CustomButtonWidget(onTap: () {
-      if(formKey.currentState!.validate()) {
+    final Widget registerBtn = BlocBuilder<RegisterCubit, RegisterState>(
+      builder: (context, state) {
+        bool isLoading = false;
+        if (state.registerStatus is RegisterLoadingButtonStatus) {
+          isLoading = (state.registerStatus as RegisterLoadingButtonStatus).isLoading;
+        }
+        return CustomButtonWidget(
+          onTap: () {
+            if (formKey.currentState!.validate()) {
 
-      }
-    }, text: "ثبت نام");
+            }
+          },
+          text: "ثبت نام",
+          loading: isLoading,
+        );
+      },
+    );
     // login account message
     final Widget loginAccount = Row(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -117,7 +129,6 @@ class _RegisterViewState extends State<RegisterView> {
           child: Padding(
             padding: const EdgeInsets.all(Distances.bodyMargin),
             child: BlocConsumer<RegisterCubit, RegisterState>(
-            
               listener: (context, state) {
                 if(state.registerStatus is RegisterPageLoadingErrorStatus) {
                   Navigator.pop(context);
@@ -129,7 +140,7 @@ class _RegisterViewState extends State<RegisterView> {
                       width: double.infinity,
                       height: double.infinity,
                         child: Center(child: CircularProgressIndicator()));
-                  } else if(state.registerStatus is RegisterPageLoadingCompletedStatus) {
+                  } else if(state.registerStatus is RegisterPageLoadingCompletedStatus || state.registerStatus is RegisterLoadingButtonStatus) {
                     return SingleChildScrollView(
                       child: Column(
                         children: [
