@@ -7,13 +7,13 @@ import 'package:flutter_divar_clone_bloc/features/ads/repositories/ads_repositor
 part 'detail_ads_state.dart';
 
 class DetailAdsCubit extends Cubit<DetailAdsState> {
-  DetailAdsCubit(this.adsRepository) : super(DetailAdsState(detailAdsStatus: DetailAdsInitial()));
-  final AdsRepository adsRepository;
+  DetailAdsCubit() : super(DetailAdsState(detailAdsStatus: DetailAdsInitial()));
+  final AdsRepository _adsRepository = AdsRepository();
 
 
   Future<void> fetchDetailAdsData({required int adsId}) async {
     emit(state.copyWith(newStatus: DetailAdsLoadData()));
-    final DataState<DetailAdsModel> result = await adsRepository.getAdsDetailApiCall(adsId: adsId);
+    final DataState<DetailAdsModel> result = await _adsRepository.getAdsDetailApiCall(adsId: adsId);
 
     if(result is DataSuccess) {
       emit(state.copyWith(newStatus: DetailAdsLoadDataSuccess(ads: result.data!)));
