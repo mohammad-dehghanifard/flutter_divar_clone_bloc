@@ -24,7 +24,7 @@ class WebService {
     ),
   );
 
-  Future<Response<dynamic>> getRequest({required String endPoint}) async => await dio.get(endPoint).timeout(const Duration(seconds: 10));
+  Future<Response<dynamic>> getRequest({required String endPoint,Map<String,dynamic>? params}) async => await dio.get(endPoint,queryParameters: params).timeout(const Duration(seconds: 10));
 
   Future<Response<dynamic>> postRequest({required String endPoint,Map<String,dynamic>? data,FormData? formData}) async => await dio.post(endPoint,data: data ?? formData).timeout(const Duration(seconds: 10));
 
