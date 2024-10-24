@@ -7,6 +7,8 @@ class DetailAdsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const DetailAdsView();
+    // ads id
+    final id = ModalRoute.of(context)!.settings.arguments as int;
+    return  DetailAdsView(adsId: id);
   }
 }

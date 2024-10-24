@@ -7,7 +7,7 @@ class AdsRepository {
 
   Future<DataState<List<AdsModel>>> getAndFilterAdsApiCall() async {
     try {
-      final response = await _apiProvider.provideGetAndFilterAds();
+      final response = await _apiProvider.provideGetAndFilterAdsApi();
       if(response.statusCode == 200) {
         final List<AdsModel> adsList = [];
         for(var item in response.data["data"]) {

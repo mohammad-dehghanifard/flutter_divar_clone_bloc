@@ -5,4 +5,5 @@ class EndPoints {
   static const provinceEndPoints = '/provinces';
   static const loginEndPoints = '/login';
   static const getAndFilterAdsEndPoints = '/ad';
+  static const getDetailAdsEndPoints = '/ad';
 }
