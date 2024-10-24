@@ -19,7 +19,13 @@ class LoadNetworkImage extends StatelessWidget {
     return ClipRRect(
       borderRadius: radius ?? BorderRadius.zero ,
       child: CachedNetworkImage(
-        placeholder: (context, url) => loadingWidget ??  const CircularProgressIndicator(),
+        placeholder: (context, url) => Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            loadingWidget ??  const CircularProgressIndicator()
+          ],
+        ),
         imageUrl: imageUrl,
         color: imageColor,
         fit: fit,

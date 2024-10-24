@@ -4,6 +4,7 @@ import 'package:flutter_divar_clone_bloc/core/common/constants/ui_colors.dart';
 import 'package:flutter_divar_clone_bloc/core/utils/image/load_image_network.dart';
 import 'package:flutter_divar_clone_bloc/features/ads/data/models/ads_model.dart';
 import 'package:flutter_divar_clone_bloc/gen/fonts.gen.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class AdsListItemWidget extends StatelessWidget {
@@ -16,6 +17,14 @@ class AdsListItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+
+    // loading widget
+    final Widget loading = LoadingAnimationWidget.staggeredDotsWave(
+      size: 8.w,
+      color: UiColors.primaryColor,
+    );
+
     return Container(
       margin: const EdgeInsets.all(Distances.bodyMargin),
       width: double.infinity,
@@ -33,6 +42,7 @@ class AdsListItemWidget extends StatelessWidget {
             width: 30.w,
             height: 30.w,
             child: LoadNetworkImage(
+              loadingWidget: loading,
                 radius: BorderRadius.only(
                   topRight: Radius.circular(4.w),
                   bottomRight: Radius.circular(4.w),
