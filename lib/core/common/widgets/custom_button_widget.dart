@@ -6,13 +6,18 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 class CustomButtonWidget extends StatelessWidget {
   const CustomButtonWidget({
     super.key,
-    this.mode = ButtonMode.fill, required this.onTap, required this.text, this.loading = false,
+    this.mode = ButtonMode.fill,
+    required this.onTap,
+    required this.text,
+    this.loading = false,
+    this.width = double.infinity,
+    this.height = 12,
   });
   final ButtonMode mode;
   final VoidCallback onTap;
   final String text;
   final bool loading;
-
+  final double width,height;
   @override
   Widget build(BuildContext context) {
 
@@ -25,7 +30,7 @@ class CustomButtonWidget extends StatelessWidget {
     return ElevatedButton(
         style: ButtonStyle(
             elevation: const WidgetStatePropertyAll(0),
-            minimumSize: WidgetStatePropertyAll(Size(double.infinity,12.w)),
+            minimumSize: WidgetStatePropertyAll(Size(width.w,height.w)),
             backgroundColor: WidgetStatePropertyAll(mode == ButtonMode.fill ? UiColors.primaryColor : Colors.transparent),
             shape: WidgetStatePropertyAll(
               RoundedRectangleBorder(

@@ -16,6 +16,12 @@ class $AssetsSvgsGen {
   /// File path: assets/svgs/arrow_down.svg
   String get arrowDown => 'assets/svgs/arrow_down.svg';
 
+  /// File path: assets/svgs/arrow_left.svg
+  String get arrowLeft => 'assets/svgs/arrow_left.svg';
+
+  /// File path: assets/svgs/bookmark.svg
+  String get bookmark => 'assets/svgs/bookmark.svg';
+
   /// File path: assets/svgs/category.svg
   String get category => 'assets/svgs/category.svg';
 
@@ -53,6 +59,8 @@ class $AssetsSvgsGen {
   List<String> get values => [
         addSquare,
         arrowDown,
+        arrowLeft,
+        bookmark,
         category,
         home,
         location,
