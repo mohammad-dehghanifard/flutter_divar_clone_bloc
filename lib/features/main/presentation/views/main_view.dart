@@ -28,6 +28,7 @@ class MainView extends StatelessWidget {
             },
           ),
           body: PageView(
+            physics: const NeverScrollableScrollPhysics(),
             controller: pageController,
             children: pages,
           ),
