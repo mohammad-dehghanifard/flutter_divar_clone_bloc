@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_divar_clone_bloc/features/category/presentation/views/category_page.dart';
 import 'package:flutter_divar_clone_bloc/features/home/presentation/views/home_page.dart';
 import 'package:flutter_divar_clone_bloc/features/main/presentation/cubit/navigation_cubit.dart';
 import 'package:flutter_divar_clone_bloc/features/main/presentation/widgets/custom_navigation_bar.dart';
@@ -12,7 +13,7 @@ class MainView extends StatelessWidget {
     final PageController pageController = PageController();
     final List<Widget> pages = [
       const HomePage(),
-      const TestView(color: Colors.blue),
+      const CategoryPage(),
       const TestView(color: Colors.redAccent),
       const TestView(color: Colors.green),
     ];

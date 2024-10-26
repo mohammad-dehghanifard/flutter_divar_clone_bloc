@@ -3,6 +3,7 @@ import 'package:flutter_divar_clone_bloc/features/ads/presentation/views/detail_
 import 'package:flutter_divar_clone_bloc/features/auth/presentation/views/auth_view.dart';
 import 'package:flutter_divar_clone_bloc/features/auth/presentation/views/login/login_page.dart';
 import 'package:flutter_divar_clone_bloc/features/auth/presentation/views/register/register_page.dart';
+import 'package:flutter_divar_clone_bloc/features/category/presentation/views/category_page.dart';
 import 'package:flutter_divar_clone_bloc/features/home/presentation/views/home_page.dart';
 import 'package:flutter_divar_clone_bloc/features/main/presentation/views/main_page.dart';
 import 'package:flutter_divar_clone_bloc/features/splash/presentation/views/splash_page.dart';
@@ -18,5 +19,6 @@ class RouteManagement {
     HomePage.routeName: (context) => const HomePage(),
     MainPage.routeName: (context) => const MainPage(),
     DetailAdsPage.routeName: (context) => const DetailAdsPage(),
+    CategoryPage.routeName: (context) => const CategoryPage(),
   };
 }

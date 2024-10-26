@@ -56,7 +56,7 @@ class _DetailAdsViewState extends State<DetailAdsView> {
               ),
             );
           }else if(state.detailAdsStatus is DetailAdsLoadData) {
-            return SizedBox();
+            return const SizedBox();
           } else {
             throw Exception("state invalid...");
           }
