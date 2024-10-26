@@ -6,4 +6,5 @@ class EndPoints {
   static const loginEndPoints = '/login';
   static const getAndFilterAdsEndPoints = '/ad';
   static const getDetailAdsEndPoints = '/ad';
+  static const getAllCategoriesEndPoints = '/categories';
 }
