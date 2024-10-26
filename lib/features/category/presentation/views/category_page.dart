@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_divar_clone_bloc/features/category/presentation/cubit/category_cubit.dart';
 import 'package:flutter_divar_clone_bloc/features/category/presentation/views/category_view.dart';
 
 class CategoryPage extends StatelessWidget {
@@ -7,6 +9,9 @@ class CategoryPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const CategoryView();
+    return BlocProvider(
+        create: (context) => CategoryCubit(),
+         child: const CategoryView(),
+    );
   }
 }
