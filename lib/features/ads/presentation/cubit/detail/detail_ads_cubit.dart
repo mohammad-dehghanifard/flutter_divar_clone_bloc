@@ -7,7 +7,7 @@ import 'package:flutter_divar_clone_bloc/features/ads/repositories/ads_repositor
 part 'detail_ads_state.dart';
 
 class DetailAdsCubit extends Cubit<DetailAdsState> {
-  DetailAdsCubit() : super(DetailAdsState(detailAdsStatus: DetailAdsInitial()));
+  DetailAdsCubit() : super(DetailAdsState(detailAdsStatus: DetailAdsLoadData()));
   final AdsRepository _adsRepository = AdsRepository();
 
 
