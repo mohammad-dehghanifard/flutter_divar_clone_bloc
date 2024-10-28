@@ -10,11 +10,17 @@ class AdsApiProvider {
     final response = await _webService.getRequest(
         endPoint: EndPoints.getAndFilterAdsEndPoints,
         params: {
+          if(params?.cityId != null)
           "city_id" : params?.cityId,
+          if(params?.provinceId != null)
           "province_id" : params?.provinceId,
+          if(params?.categoryId != null)
           "category_id" : params?.categoryId,
+          if(params?.orderBy != null)
           "order_by" : params?.orderBy,
+          if(params?.orderType != null)
           "order_type" : params?.orderType,
+          if(params?.searchKeyWord != null)
           "keyword" : params?.searchKeyWord,
         }
     );

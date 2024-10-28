@@ -13,7 +13,9 @@ class TextFieldWidget extends StatefulWidget {
     this.validator,
     this.readOnly = false,
     this.maxLines = 1,
-    this.onTap
+    this.onTap,
+    this.iconColor,
+    this.onChanged
   });
 
   final String? hintText;
@@ -23,7 +25,9 @@ class TextFieldWidget extends StatefulWidget {
   final String? Function(String?)? validator;
   final bool readOnly;
   final int maxLines;
+  final ColorFilter? iconColor;
   final Function()? onTap;
+  final Function(String)? onChanged;
   @override
   State<TextFieldWidget> createState() => _TextFieldWidgetState();
 }
@@ -35,6 +39,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
   Widget build(BuildContext context) {
     return TextFormField(
       onTap: widget.onTap,
+      onChanged: widget.onChanged,
       maxLines: widget.maxLines,
       controller: widget.controller,
       validator: widget.validator,
@@ -46,7 +51,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
         hintStyle: TextStyle(fontSize: 14.sp,color: UiColors.greyTextColor,fontWeight: FontWeight.w500),
         suffixIcon: Padding(
           padding: EdgeInsets.all(2.5.w),
-          child: widget.keyboardType != TextInputType.visiblePassword? widget.iconPath == null ? null:SvgPicture.asset(widget.iconPath!) :
+          child: widget.keyboardType != TextInputType.visiblePassword? widget.iconPath == null ? null:SvgPicture.asset(widget.iconPath!,colorFilter: widget.iconColor) :
           GestureDetector(
             onTap: () {
               setState(() {
