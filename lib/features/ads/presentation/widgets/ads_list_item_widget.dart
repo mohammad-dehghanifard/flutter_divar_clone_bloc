@@ -12,9 +12,11 @@ class AdsListItemWidget extends StatelessWidget {
   const AdsListItemWidget({
     super.key,
     required this.ads,
+    this.margin = Distances.bodyMargin,
   });
 
   final AdsModel ads;
+  final double margin;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +31,7 @@ class AdsListItemWidget extends StatelessWidget {
     return GestureDetector(
       onTap: () => Navigator.pushNamed(context,DetailAdsPage.routeName,arguments: ads.id),
       child: Container(
-        margin: const EdgeInsets.all(Distances.bodyMargin),
+        margin:  EdgeInsets.all(margin),
         width: double.infinity,
         decoration: BoxDecoration(
             color: UiColors.whiteColor,
