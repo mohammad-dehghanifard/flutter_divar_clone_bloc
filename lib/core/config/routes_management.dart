@@ -7,6 +7,7 @@ import 'package:flutter_divar_clone_bloc/features/auth/presentation/views/regist
 import 'package:flutter_divar_clone_bloc/features/category/presentation/views/category_page.dart';
 import 'package:flutter_divar_clone_bloc/features/home/presentation/views/home_page.dart';
 import 'package:flutter_divar_clone_bloc/features/main/presentation/views/main_page.dart';
+import 'package:flutter_divar_clone_bloc/features/profile/presentation/views/profile_page.dart';
 import 'package:flutter_divar_clone_bloc/features/splash/presentation/views/splash_page.dart';
 
 class RouteManagement {
@@ -22,5 +23,6 @@ class RouteManagement {
     DetailAdsPage.routeName: (context) => const DetailAdsPage(),
     CategoryPage.routeName: (context) => const CategoryPage(),
     SearchPage.routeName: (context) => const SearchPage(),
+    ProfilePage.routeName: (context) => const ProfilePage(),
   };
 }
