@@ -10,6 +10,29 @@ class ProfileView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final List<ProfileButtonWidget> profileButtons = [
+      ProfileButtonWidget(
+        onTap: () {  },
+        imagePath: Assets.svgs.userEdit,
+        text: 'ویرایش پروفایل',
+      ),
+      ProfileButtonWidget(
+        onTap: () {  },
+        imagePath: Assets.svgs.myAds,
+        text: 'آگهی های من',
+      ),
+      ProfileButtonWidget(
+        onTap: () {  },
+        imagePath: Assets.svgs.bookmark,
+        text: 'نشان ها',
+      ),
+      ProfileButtonWidget(
+        onTap: () {  },
+        imagePath: Assets.svgs.logout,
+        text: 'خروج از حساب',
+      ),
+
+    ];
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.all(Distances.bodyMargin),
@@ -24,10 +47,22 @@ class ProfileView extends StatelessWidget {
                 color: UiColors.greyColor
               ),
             ),
-            ProfileButtonWidget(
-              onTap: () {  },
-              imagePath: Assets.svgs.userEdit,
-              text: 'ویرایش پروفایل',
+            SizedBox(height: 4.w),
+            // username
+            Text("محمد دهقانی فرد",style: TextStyle(fontSize: 16.sp,fontWeight: FontWeight.w900)),
+            SizedBox(height: 6.w),
+            Column(
+              children: List.generate(
+                  profileButtons.length,
+                  (index) => Padding(
+                    padding: EdgeInsets.only(bottom: 4.w),
+                    child: ProfileButtonWidget(
+                        onTap: profileButtons[index].onTap,
+                        imagePath:  profileButtons[index].imagePath,
+                        text:  profileButtons[index].text
+                    ),
+                  ),
+              ),
             )
           ],
         ),
