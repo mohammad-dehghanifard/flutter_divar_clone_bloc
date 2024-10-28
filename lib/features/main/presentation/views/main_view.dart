@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_divar_clone_bloc/features/ads/presentation/views/search/search_page.dart';
 import 'package:flutter_divar_clone_bloc/features/category/presentation/views/category_page.dart';
 import 'package:flutter_divar_clone_bloc/features/home/presentation/views/home_page.dart';
 import 'package:flutter_divar_clone_bloc/features/main/presentation/cubit/navigation_cubit.dart';
@@ -14,7 +15,7 @@ class MainView extends StatelessWidget {
     final List<Widget> pages = [
       const HomePage(),
       const CategoryPage(),
-      const TestView(color: Colors.redAccent),
+      const SearchPage(),
       const TestView(color: Colors.green),
     ];
     return BlocBuilder<NavigationCubit, int>(

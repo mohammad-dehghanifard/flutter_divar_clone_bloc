@@ -3,7 +3,7 @@ import 'package:flutter_divar_clone_bloc/core/common/constants/distances.dart';
 import 'package:flutter_divar_clone_bloc/core/common/constants/ui_colors.dart';
 import 'package:flutter_divar_clone_bloc/core/utils/image/load_image_network.dart';
 import 'package:flutter_divar_clone_bloc/features/ads/data/models/ads_model.dart';
-import 'package:flutter_divar_clone_bloc/features/ads/presentation/views/detail_ads_page.dart';
+import 'package:flutter_divar_clone_bloc/features/ads/presentation/views/detail/detail_ads_page.dart';
 import 'package:flutter_divar_clone_bloc/gen/fonts.gen.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
