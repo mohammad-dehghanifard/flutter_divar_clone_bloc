@@ -24,6 +24,7 @@ class ProfileView extends StatelessWidget {
       ProfileButtonWidget(
         onTap: () {  },
         imagePath: Assets.svgs.bookmark,
+        colorFilter: const ColorFilter.mode(UiColors.primaryColor, BlendMode.srcIn),
         text: 'نشان ها',
       ),
       ProfileButtonWidget(
@@ -59,7 +60,8 @@ class ProfileView extends StatelessWidget {
                     child: ProfileButtonWidget(
                         onTap: profileButtons[index].onTap,
                         imagePath:  profileButtons[index].imagePath,
-                        text:  profileButtons[index].text
+                        text:  profileButtons[index].text,
+                        colorFilter: profileButtons[index].colorFilter,
                     ),
                   ),
               ),
