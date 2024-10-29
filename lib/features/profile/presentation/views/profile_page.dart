@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_divar_clone_bloc/features/profile/presentation/cubit/profile_cubit.dart';
 import 'package:flutter_divar_clone_bloc/features/profile/presentation/views/profile_view.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -7,6 +9,9 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const ProfileView();
+    return BlocProvider<ProfileCubit>(
+        create: (context) => ProfileCubit(),
+        child: const ProfileView(),
+    );
   }
 }
