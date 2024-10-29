@@ -6,14 +6,12 @@ import 'package:flutter_divar_clone_bloc/features/home/presentation/views/home_p
 import 'package:flutter_divar_clone_bloc/features/main/presentation/cubit/navigation_cubit.dart';
 import 'package:flutter_divar_clone_bloc/features/main/presentation/widgets/custom_navigation_bar.dart';
 import 'package:flutter_divar_clone_bloc/features/profile/presentation/views/profile_page.dart';
-import 'package:flutter_divar_clone_bloc/features/profile/presentation/views/profile_view.dart';
 
 class MainView extends StatelessWidget {
   const MainView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final PageController pageController = PageController();
     final List<Widget> pages = [
       const HomePage(),
       const CategoryPage(),
@@ -25,17 +23,15 @@ class MainView extends StatelessWidget {
         final NavigationCubit navCubit = BlocProvider.of<NavigationCubit>(context);
         return Scaffold(
           bottomNavigationBar: CustomNavigationBar(
-            selectedPage: state, 
+            selectedPage: state,
             onItemTap: (int pageIndex) {
               navCubit.changePageIndex(pageIndex);
-              pageController.animateToPage(pageIndex, duration: const Duration(milliseconds: 250), curve: Curves.linear);
             },
           ),
-          body: PageView(
-            physics: const NeverScrollableScrollPhysics(),
-            controller: pageController,
+          body: IndexedStack(
+            index: state,
             children: pages,
-          ),
+          )
         );
       },
     );
