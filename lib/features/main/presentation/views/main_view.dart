@@ -5,6 +5,7 @@ import 'package:flutter_divar_clone_bloc/features/category/presentation/views/ca
 import 'package:flutter_divar_clone_bloc/features/home/presentation/views/home_page.dart';
 import 'package:flutter_divar_clone_bloc/features/main/presentation/cubit/navigation_cubit.dart';
 import 'package:flutter_divar_clone_bloc/features/main/presentation/widgets/custom_navigation_bar.dart';
+import 'package:flutter_divar_clone_bloc/features/profile/presentation/views/profile_page.dart';
 import 'package:flutter_divar_clone_bloc/features/profile/presentation/views/profile_view.dart';
 
 class MainView extends StatelessWidget {
@@ -17,7 +18,7 @@ class MainView extends StatelessWidget {
       const HomePage(),
       const CategoryPage(),
       const SearchPage(),
-      const ProfileView(),
+      const ProfilePage(),
     ];
     return BlocBuilder<NavigationCubit, int>(
       builder: (context, state) {
