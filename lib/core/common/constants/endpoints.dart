@@ -8,4 +8,5 @@ class EndPoints {
   static const getDetailAdsEndPoints = '/ad';
   static const getAllCategoriesEndPoints = '/categories';
   static const getUserInfoEndPoints = '/profile';
+  static const editUserEndPoints = '/profile';
 }

@@ -1,6 +1,6 @@
 import 'package:flutter_divar_clone_bloc/core/common/data/model/user_model.dart';
 import 'package:flutter_divar_clone_bloc/core/common/resources/data_state.dart';
-import 'package:flutter_divar_clone_bloc/features/profile/data/data_source/profile_api_provider.dart';
+import 'package:flutter_divar_clone_bloc/features/profile/data/data_source/remote/profile_api_provider.dart';
 
 class ProfileRepository {
   final ProfileApiProvider _apiProvider = ProfileApiProvider();
