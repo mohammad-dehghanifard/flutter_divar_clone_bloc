@@ -8,9 +8,11 @@ import 'package:flutter_divar_clone_bloc/core/common/widgets/custom_button_widge
 import 'package:flutter_divar_clone_bloc/core/common/widgets/page_app_bar_widget.dart';
 import 'package:flutter_divar_clone_bloc/core/common/widgets/text_field_widget.dart';
 import 'package:flutter_divar_clone_bloc/core/utils/image/load_image_network.dart';
+import 'package:flutter_divar_clone_bloc/core/utils/image/pick_image.dart';
 import 'package:flutter_divar_clone_bloc/features/profile/data/requests/edit_user_request.dart';
 import 'package:flutter_divar_clone_bloc/features/profile/presentation/widgets/select_image_bottom_sheet_widget.dart';
 import 'package:flutter_divar_clone_bloc/gen/assets.gen.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class EditUserView extends StatefulWidget {
@@ -61,7 +63,20 @@ class _EditUserViewState extends State<EditUserView> {
               TextButton(
                   onPressed: () {
                     showModalBottomSheet(context: context, builder: (context) {
-                      return const SelectImageBottomSheetWidget();
+                      return SelectImageBottomSheetWidget(
+                        fromCameraTap: () async {
+                          final image = await PickImage.imagePicker(ImageSource.camera);
+                          if(image != null) {
+                            editUserRequest.image = image;
+                          }
+                        },
+                        fromGalleryTap: () async {
+                          final image = await PickImage.imagePicker(ImageSource.gallery);
+                          if(image != null) {
+                            editUserRequest.image = image;
+                          }
+                        },
+                      );
                     },);
                   },
                   child: Text("تغییر عکس",style: TextStyle(fontSize: 14.sp,fontWeight: FontWeight.w700),)),
