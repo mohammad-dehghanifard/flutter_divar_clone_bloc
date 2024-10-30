@@ -8,17 +8,15 @@ final class ProfileInitialStatus extends EditProfileStatus {}
 final class EditProfileLoadingStatus extends EditProfileStatus {}
 
 final class EditProfileLoadDataSuccessStatus extends EditProfileStatus {
-  EditProfileLoadDataSuccessStatus({required this.provinces});
+  EditProfileLoadDataSuccessStatus({required this.provinces,this.image});
   final List<ProvinceModel> provinces;
+  final XFile? image;
 }
 
-final class EditProfileChangeImageStatus extends EditProfileStatus {
-  EditProfileChangeImageStatus({required this.image});
-  final XFile image;
+final class EditProfileChangeInformationSuccessStatus extends EditProfileStatus {
+  EditProfileChangeInformationSuccessStatus({required this.message});
+  final String message;
 }
-
-final class EditProfileChangeInformationStatus extends EditProfileStatus {}
-
 
 final class EditProfileLoadDataErrorStatus extends EditProfileStatus {
   EditProfileLoadDataErrorStatus({required this.errorMessage});

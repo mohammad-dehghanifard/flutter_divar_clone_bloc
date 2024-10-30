@@ -2,9 +2,12 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter_divar_clone_bloc/core/common/data/model/user_model.dart';
 import 'package:flutter_divar_clone_bloc/core/common/data/responses/province_response.dart';
 import 'package:flutter_divar_clone_bloc/core/common/resources/data_state.dart';
+import 'package:flutter_divar_clone_bloc/core/utils/image/pick_image.dart';
+import 'package:flutter_divar_clone_bloc/features/profile/data/requests/edit_user_request.dart';
 import 'package:flutter_divar_clone_bloc/features/profile/presentation/cubit/edit_profile_status.dart';
 import 'package:flutter_divar_clone_bloc/features/profile/presentation/cubit/profile_status.dart';
 import 'package:flutter_divar_clone_bloc/features/profile/repositories/profile_repository.dart';
+import 'package:image_picker/image_picker.dart';
 
 part 'profile_state.dart';
 
@@ -14,6 +17,7 @@ class ProfileCubit extends Cubit<ProfileState> {
           profileStatus: ProfileInitial(),
           editProfileStatus: ProfileInitialStatus()
       ));
+
   final ProfileRepository _profileRepository = ProfileRepository();
 
   Future<void> fetchUserData() async {
@@ -42,5 +46,25 @@ class ProfileCubit extends Cubit<ProfileState> {
     }
   }
 
+  Future<XFile?> changeImage({required ImageSource source}) async {
+    final image = await PickImage.imagePicker(source);
+    if(state.editProfileStatus is EditProfileLoadDataSuccessStatus) {
+      if(image != null ) {
+        final provinces = (state.editProfileStatus as EditProfileLoadDataSuccessStatus).provinces;
+        emit(state.copyWith(newEditProfileStatus: EditProfileLoadDataSuccessStatus(provinces: provinces,image: image)));
+        return image;
+      }
+    }
+    return null;
+  }
 
+  Future<void> editUser({required EditUserRequest request}) async {
+    final DataState<bool> result = await _profileRepository.editUserApiCall(request: request);
+    if(result is DataSuccess) {
+      emit(state.copyWith(newEditProfileStatus: EditProfileChangeInformationSuccessStatus(message: "اطلاعات حساب کاربری شما با موفقیت ویرایش شد")));
+    }
+    if(result is DataFailed) {
+      emit(state.copyWith(newEditProfileStatus: EditProfileLoadDataErrorStatus(errorMessage: result.error ?? "خطای ناشناخته ای رخ داده لطفا با پشتیبانی تماس بگیرید")));
+    }
+  }
 }
