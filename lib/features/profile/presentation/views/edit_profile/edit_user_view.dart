@@ -1,20 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_divar_clone_bloc/core/common/constants/distances.dart';
 import 'package:flutter_divar_clone_bloc/core/common/constants/ui_colors.dart';
-import 'package:flutter_divar_clone_bloc/core/common/data/model/province_model.dart';
+import 'package:flutter_divar_clone_bloc/core/common/data/model/user_model.dart';
 import 'package:flutter_divar_clone_bloc/core/common/widgets/custom_button_widget.dart';
 import 'package:flutter_divar_clone_bloc/core/common/widgets/page_app_bar_widget.dart';
-import 'package:flutter_divar_clone_bloc/core/common/widgets/province_and_city_bottom_sheet_widget.dart';
 import 'package:flutter_divar_clone_bloc/core/common/widgets/text_field_widget.dart';
 import 'package:flutter_divar_clone_bloc/features/profile/presentation/widgets/select_image_bottom_sheet_widget.dart';
 import 'package:flutter_divar_clone_bloc/gen/assets.gen.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 class EditUserView extends StatelessWidget {
-  static String routeName = "/editUser";
-
-  const EditUserView({super.key});
-
+  const EditUserView({super.key, required this.user});
+  final UserModel user;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
