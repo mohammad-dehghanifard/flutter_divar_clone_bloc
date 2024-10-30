@@ -16,4 +16,9 @@ class ProfileApiProvider {
     final response = await _webService.postRequest(endPoint: EndPoints.editUserEndPoints,formData: request.sendRequest());
     return response;
   }
+
+  Future<Response<dynamic>> provideProvinceApi() async {
+    final response = await _webService.getRequest(endPoint: EndPoints.provinceEndPoints);
+    return response;
+  }
 }
