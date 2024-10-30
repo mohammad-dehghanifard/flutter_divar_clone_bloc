@@ -29,6 +29,7 @@ class _EditUserViewState extends State<EditUserView> {
   @override
   void initState() {
     _initUserInformation();
+
     super.initState();
   }
 

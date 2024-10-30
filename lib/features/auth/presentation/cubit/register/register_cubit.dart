@@ -25,7 +25,6 @@ class RegisterCubit extends Cubit<RegisterState> {
 
     if(result is DataFailed) {
       emit(state.copyWith(newStatus: RegisterPageLoadingErrorStatus()));
-      print(result.error);
     }
   }
 

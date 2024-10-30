@@ -18,3 +18,9 @@ final class EditProfileChangeImageStatus extends EditProfileStatus {
 }
 
 final class EditProfileChangeInformationStatus extends EditProfileStatus {}
+
+
+final class EditProfileLoadDataErrorStatus extends EditProfileStatus {
+  EditProfileLoadDataErrorStatus({required this.errorMessage});
+  final String errorMessage;
+}
