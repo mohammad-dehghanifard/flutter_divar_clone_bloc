@@ -1,13 +1,18 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter_divar_clone_bloc/core/common/data/model/user_model.dart';
 import 'package:flutter_divar_clone_bloc/core/common/resources/data_state.dart';
+import 'package:flutter_divar_clone_bloc/features/profile/presentation/cubit/edit_profile_status.dart';
 import 'package:flutter_divar_clone_bloc/features/profile/presentation/cubit/profile_status.dart';
 import 'package:flutter_divar_clone_bloc/features/profile/repositories/profile_repository.dart';
 
 part 'profile_state.dart';
 
 class ProfileCubit extends Cubit<ProfileState> {
-  ProfileCubit() : super(ProfileState(profileStatus: ProfileInitial()));
+  ProfileCubit() : super(
+      ProfileState(
+          profileStatus: ProfileInitial(),
+          editProfileStatus: ProfileInitialStatus()
+      ));
   final ProfileRepository _profileRepository = ProfileRepository();
 
   Future<void> fetchUserData() async {
