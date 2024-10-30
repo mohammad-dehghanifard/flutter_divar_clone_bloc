@@ -1,11 +1,14 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:image_picker/image_picker.dart';
 
 class EditUserRequest {
   final TextEditingController fullNameTextController = TextEditingController();
   final TextEditingController addressTextController = TextEditingController();
+  final TextEditingController provinceTextController = TextEditingController();
+  final TextEditingController cityTextController = TextEditingController();
   int? cityId;
-  String? imagePath;
+  XFile? image;
 
   String? validateFullName(String? value) {
     if(value!.isEmpty || value == "") {
@@ -14,20 +17,16 @@ class EditUserRequest {
     return null;
   }
 
-  String? validateAddress(String? value) {
-    if(value!.isEmpty || value == "") {
-      return "وارد کردن ادرس الزامی میباشد!";
-    }
-    return null;
-  }
+
 
   FormData sendRequest() {
     return FormData.fromMap({
       "name" : fullNameTextController.text,
+      if(addressTextController.text.isNotEmpty || addressTextController.text != "")
       "address" : addressTextController.text,
       "city_id" : cityId,
-      if(imagePath != null)
-      "avatar" : MultipartFile.fromFileSync(imagePath!)
+      if(image != null)
+      "avatar" : MultipartFile.fromFileSync(image!.path)
     });
   }
 
