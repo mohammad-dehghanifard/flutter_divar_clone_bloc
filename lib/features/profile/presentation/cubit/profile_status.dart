@@ -1,5 +1,3 @@
-
-
 import 'package:flutter_divar_clone_bloc/core/common/data/model/user_model.dart';
 
 sealed class ProfileStatus {}
