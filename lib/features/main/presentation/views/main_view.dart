@@ -39,18 +39,3 @@ class MainView extends StatelessWidget {
 }
 
 
-class TestView extends StatelessWidget {
-  const TestView({super.key, required this.color});
-
-  final Color color;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      height: double.infinity,
-      color: color,
-    );
-  }
-}
-

@@ -165,13 +165,16 @@ class _EditUserViewState extends State<EditUserView> {
                       ),
                       SizedBox(height: 8.w),
                       // edit button
-                      CustomButtonWidget(onTap: () {}, text: "ویرایش")
+                      CustomButtonWidget(
+                          onTap: ()  {
+                        profileCubit.editUser(request: editUserRequest);
+                      }, text: "ویرایش")
                     ],
                   ),
                 ),
               );
             } else {
-              throw Exception("state invalid...");
+              return const SizedBox();
             }
           },
           listener: (context, state) {
@@ -179,6 +182,12 @@ class _EditUserViewState extends State<EditUserView> {
               Navigator.pop(context);
               final errorMessage = (state.editProfileStatus as EditProfileLoadDataErrorStatus).errorMessage;
               showCustomSnackBar(context: context, snackBar: showSnackBarWidget(message: errorMessage,mode: SnackBarMode.error));
+            }
+
+            if(state.editProfileStatus is EditProfileChangeInformationSuccessStatus) {
+              Navigator.pop(context);
+              final message = (state.editProfileStatus as EditProfileChangeInformationSuccessStatus).message;
+              showCustomSnackBar(context: context, snackBar: showSnackBarWidget(message: message));
             }
 
           },)

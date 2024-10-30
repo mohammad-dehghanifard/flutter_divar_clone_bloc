@@ -5,6 +5,7 @@ import 'package:flutter_divar_clone_bloc/core/common/constants/ui_colors.dart';
 import 'package:flutter_divar_clone_bloc/core/common/data/model/user_model.dart';
 import 'package:flutter_divar_clone_bloc/core/utils/image/load_image_network.dart';
 import 'package:flutter_divar_clone_bloc/core/utils/widgets/show_snack_bar_widget.dart';
+import 'package:flutter_divar_clone_bloc/features/profile/presentation/cubit/edit_profile_status.dart';
 import 'package:flutter_divar_clone_bloc/features/profile/presentation/cubit/profile_cubit.dart';
 import 'package:flutter_divar_clone_bloc/features/profile/presentation/cubit/profile_status.dart';
 import 'package:flutter_divar_clone_bloc/features/profile/presentation/views/edit_profile/edit_user_page.dart';
@@ -20,7 +21,6 @@ class ProfileView extends StatefulWidget {
 }
 
 class _ProfileViewState extends State<ProfileView> {
-
   @override
   void initState() {
     /// api call
@@ -111,6 +111,7 @@ class _ProfileViewState extends State<ProfileView> {
                 final errorMessage = (state.profileStatus as ProfileLoadDataError).errorMessage;
                 showCustomSnackBar(context: context, snackBar: showSnackBarWidget(message: errorMessage));
               }
+
             },)
       ),
     );
