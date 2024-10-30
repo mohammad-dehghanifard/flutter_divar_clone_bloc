@@ -7,6 +7,7 @@ import 'package:flutter_divar_clone_bloc/core/utils/image/load_image_network.dar
 import 'package:flutter_divar_clone_bloc/core/utils/widgets/show_snack_bar_widget.dart';
 import 'package:flutter_divar_clone_bloc/features/profile/presentation/cubit/profile_cubit.dart';
 import 'package:flutter_divar_clone_bloc/features/profile/presentation/cubit/profile_status.dart';
+import 'package:flutter_divar_clone_bloc/features/profile/presentation/views/edit_user_view.dart';
 import 'package:flutter_divar_clone_bloc/features/profile/presentation/widgets/profile_button_widget.dart';
 import 'package:flutter_divar_clone_bloc/gen/assets.gen.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -45,7 +46,9 @@ class _ProfileViewState extends State<ProfileView> {
                 // profile button list
                 final List<ProfileButtonWidget> profileButtons = [
                   ProfileButtonWidget(
-                    onTap: () {  },
+                    onTap: () {
+                      Navigator.pushNamed(context, EditUserView.routeName);
+                    },
                     imagePath: Assets.svgs.userEdit,
                     text: 'ویرایش پروفایل',
                   ),

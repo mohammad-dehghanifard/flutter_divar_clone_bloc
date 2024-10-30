@@ -28,6 +28,7 @@ class MyApp extends StatelessWidget {
         ],
         locale: const Locale("fa"),
         title: 'Niaz',
+        debugShowCheckedModeBanner: false,
         theme: ThemeManagement.lightTheme,
         routes: RouteManagement.routes,
       ),
