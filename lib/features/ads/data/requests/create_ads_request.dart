@@ -6,6 +6,9 @@ class CreateAdsRequest {
   final TextEditingController adsTitleTxt = TextEditingController();
   final TextEditingController adsDescriptionTxt = TextEditingController();
   final TextEditingController adsPriceTxt = TextEditingController();
+  final TextEditingController adsProvinceTxt = TextEditingController();
+  final TextEditingController adsCityTxt = TextEditingController();
+  final TextEditingController adsCategoryTxt = TextEditingController();
   int? categoryId,cityId;
   XFile? image;
 

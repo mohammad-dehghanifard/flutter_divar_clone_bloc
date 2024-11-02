@@ -10,9 +10,9 @@ final class CreateAdsLoadingPageStatus extends CreateAdsStatus {}
 
 final class CreateAdsLoadDataSuccessStatus extends CreateAdsStatus {
   CreateAdsLoadDataSuccessStatus(
-      {required this.provinces, required this.categories, this.image});
+      {required this.provinceResponse, required this.categories, this.image});
 
-  final ProvinceResponse provinces;
+  final ProvinceResponse provinceResponse;
   final List<CategoryModel> categories;
   XFile? image;
 }

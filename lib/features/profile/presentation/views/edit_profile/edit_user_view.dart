@@ -14,7 +14,7 @@ import 'package:flutter_divar_clone_bloc/core/utils/widgets/show_snack_bar_widge
 import 'package:flutter_divar_clone_bloc/features/profile/data/requests/edit_user_request.dart';
 import 'package:flutter_divar_clone_bloc/features/profile/presentation/cubit/edit_profile_status.dart';
 import 'package:flutter_divar_clone_bloc/features/profile/presentation/cubit/profile_cubit.dart';
-import 'package:flutter_divar_clone_bloc/features/profile/presentation/widgets/select_image_bottom_sheet_widget.dart';
+import 'package:flutter_divar_clone_bloc/core/common/widgets/select_image_bottom_sheet_widget.dart';
 import 'package:flutter_divar_clone_bloc/gen/assets.gen.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';

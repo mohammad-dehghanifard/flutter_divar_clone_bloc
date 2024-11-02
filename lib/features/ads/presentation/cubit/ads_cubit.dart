@@ -2,12 +2,14 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter_divar_clone_bloc/core/common/data/model/province_model.dart';
 import 'package:flutter_divar_clone_bloc/core/common/data/responses/province_response.dart';
 import 'package:flutter_divar_clone_bloc/core/common/resources/data_state.dart';
+import 'package:flutter_divar_clone_bloc/core/utils/image/pick_image.dart';
 import 'package:flutter_divar_clone_bloc/features/ads/data/models/ads_model.dart';
 import 'package:flutter_divar_clone_bloc/features/ads/data/params/ads_params.dart';
 import 'package:flutter_divar_clone_bloc/features/ads/presentation/cubit/ads_search_status.dart';
 import 'package:flutter_divar_clone_bloc/features/ads/presentation/cubit/create_ads_status.dart';
 import 'package:flutter_divar_clone_bloc/features/ads/repositories/ads_repository.dart';
 import 'package:flutter_divar_clone_bloc/features/category/data/models/category_model.dart';
+import 'package:image_picker/image_picker.dart';
 
 
 part 'ads_state.dart';
@@ -40,7 +42,7 @@ class AdsCubit extends Cubit<AdsState> {
 
     if(provincesState is DataSuccess && categoriesState is DataSuccess) {
       emit(state.copyWith(newCreateAdsStatus: CreateAdsLoadDataSuccessStatus(
-          provinces: provincesState.data!,
+          provinceResponse: provincesState.data!,
           categories: categoriesState.data!
       )));
     }
@@ -50,5 +52,21 @@ class AdsCubit extends Cubit<AdsState> {
           errorMessage: provincesState.error ?? categoriesState.error ?? "خطای ناشناخته ای رخ داده با پشتیبانی تماس بگیرید"
       )));
     }
+  }
+
+  Future<XFile?> changeImage({required ImageSource source}) async {
+    final image = await PickImage.imagePicker(source);
+    if(state.createAdsStatus is CreateAdsLoadDataSuccessStatus) {
+      if(image != null ) {
+        final provinceResponse = (state.createAdsStatus as CreateAdsLoadDataSuccessStatus).provinceResponse;
+        final categories = (state.createAdsStatus as CreateAdsLoadDataSuccessStatus).categories;
+        emit(state.copyWith(newCreateAdsStatus: CreateAdsLoadDataSuccessStatus(
+            provinceResponse: provinceResponse,
+            categories: categories,
+            image: image)));
+        return image;
+      }
+    }
+    return null;
   }
 }
