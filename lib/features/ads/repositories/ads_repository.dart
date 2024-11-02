@@ -5,6 +5,7 @@ import 'package:flutter_divar_clone_bloc/features/ads/data/data_source/remote/ad
 import 'package:flutter_divar_clone_bloc/features/ads/data/models/ads_model.dart';
 import 'package:flutter_divar_clone_bloc/features/ads/data/models/detail_ads_model.dart';
 import 'package:flutter_divar_clone_bloc/features/ads/data/params/ads_params.dart';
+import 'package:flutter_divar_clone_bloc/features/ads/data/requests/create_ads_request.dart';
 import 'package:flutter_divar_clone_bloc/features/category/data/models/category_model.dart';
 
 class AdsRepository {
@@ -67,6 +68,19 @@ class AdsRepository {
       }
     } catch(e) {
       return const DataFailed("خطای ناشناخته ای رخ داده!");
+    }
+  }
+
+  Future<DataState<bool>> createNewAdsApiCall({required CreateAdsRequest request}) async {
+    try {
+      final response = await _apiProvider.provideCreateAdsApi(request: request);
+      if(response.statusCode == 200) {
+        return const DataSuccess(true);
+      } else {
+        return DataFailed(response.data['message']);
+      }
+    } catch(e) {
+      return const DataFailed("خطای ناشناخته ای رخ داده لطفا با پشتیبانی تماس بگیرید!");
     }
   }
 
