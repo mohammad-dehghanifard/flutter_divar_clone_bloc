@@ -32,4 +32,14 @@ class AdsApiProvider {
     return response;
   }
 
+  Future<Response<dynamic>> provideProvinceApi() async {
+    final response = await _webService.getRequest(endPoint: EndPoints.provinceEndPoints);
+    return response;
+  }
+
+  Future<Response<dynamic>> provideGetAllCategoryApi() async {
+    final response = await _webService.getRequest(endPoint: EndPoints.getAllCategoriesEndPoints);
+    return response;
+  }
+
 }
