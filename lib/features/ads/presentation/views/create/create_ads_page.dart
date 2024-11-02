@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_divar_clone_bloc/features/ads/presentation/cubit/ads_cubit.dart';
 import 'package:flutter_divar_clone_bloc/features/ads/presentation/views/create/create_ads_view.dart';
 
 class CreateAdsPage extends StatelessWidget {
@@ -7,6 +9,9 @@ class CreateAdsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const CreateAdsView();
+    return BlocProvider(
+        create: (context) => AdsCubit(),
+        child: const CreateAdsView(),
+    );
   }
 }

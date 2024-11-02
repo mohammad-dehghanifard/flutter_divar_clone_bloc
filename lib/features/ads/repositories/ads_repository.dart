@@ -57,7 +57,7 @@ class AdsRepository {
     }
   }
 
-  Future<DataState<ProvinceResponse>> fetchProvinceApiCall() async {
+  Future<DataState<ProvinceResponse>> getAllProvincesApiCall() async {
     try {
       final Response response = await _apiProvider.provideProvinceApi();
       if(response.statusCode == 200) {
