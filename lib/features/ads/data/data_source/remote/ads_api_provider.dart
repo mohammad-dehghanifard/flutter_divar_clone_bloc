@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_divar_clone_bloc/core/common/constants/endpoints.dart';
 import 'package:flutter_divar_clone_bloc/core/utils/api/web_service.dart';
 import 'package:flutter_divar_clone_bloc/features/ads/data/params/ads_params.dart';
+import 'package:flutter_divar_clone_bloc/features/ads/data/requests/create_ads_request.dart';
 
 class AdsApiProvider {
   final WebService _webService = WebService();
@@ -39,6 +40,11 @@ class AdsApiProvider {
 
   Future<Response<dynamic>> provideGetAllCategoryApi() async {
     final response = await _webService.getRequest(endPoint: EndPoints.getAllCategoriesEndPoints);
+    return response;
+  }
+  
+  Future<Response<dynamic>> provideCreateAdsApi({required CreateAdsRequest request}) async {
+    final response = await _webService.postRequest(endPoint: EndPoints.createAdsEndPoints,formData: request.sendRequest());
     return response;
   }
 
