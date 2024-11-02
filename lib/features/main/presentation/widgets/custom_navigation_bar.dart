@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_divar_clone_bloc/core/common/constants/ui_colors.dart';
+import 'package:flutter_divar_clone_bloc/features/ads/presentation/views/create/create_ads_page.dart';
 import 'package:flutter_divar_clone_bloc/gen/assets.gen.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -42,7 +43,9 @@ class CustomNavigationBar extends StatelessWidget {
               isActive: selectedPage == 1,
               onTap: () => onItemTap(1)),
           _AddNewAdsButton(
-            onTap: () {},
+            onTap: () {
+              Navigator.pushNamed(context, CreateAdsPage.routeName);
+            },
           ),
           _NavItemWidget(
               iconPath: Assets.svgs.search,
