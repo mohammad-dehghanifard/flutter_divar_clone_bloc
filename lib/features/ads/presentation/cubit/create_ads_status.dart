@@ -24,3 +24,5 @@ final class CreateAdsErrorStatus extends CreateAdsStatus {
 
 
 final class CreateAdsSuccessStatus extends CreateAdsStatus {}
+
+final class CreateAdsLoadingButtonStatus extends CreateAdsStatus {}

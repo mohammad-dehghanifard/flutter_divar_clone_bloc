@@ -5,6 +5,7 @@ import 'package:flutter_divar_clone_bloc/core/common/resources/data_state.dart';
 import 'package:flutter_divar_clone_bloc/core/utils/image/pick_image.dart';
 import 'package:flutter_divar_clone_bloc/features/ads/data/models/ads_model.dart';
 import 'package:flutter_divar_clone_bloc/features/ads/data/params/ads_params.dart';
+import 'package:flutter_divar_clone_bloc/features/ads/data/requests/create_ads_request.dart';
 import 'package:flutter_divar_clone_bloc/features/ads/presentation/cubit/ads_search_status.dart';
 import 'package:flutter_divar_clone_bloc/features/ads/presentation/cubit/create_ads_status.dart';
 import 'package:flutter_divar_clone_bloc/features/ads/repositories/ads_repository.dart';
@@ -68,5 +69,16 @@ class AdsCubit extends Cubit<AdsState> {
       }
     }
     return null;
+  }
+
+  Future<void> createNewAds({required CreateAdsRequest request}) async {
+    final DataState<bool> result = await _adsRepository.createNewAdsApiCall(request: request);
+
+    if(result is DataSuccess) {
+      emit(state.copyWith(newCreateAdsStatus: CreateAdsSuccessStatus()));
+    }
+    if(result is DataFailed) {
+      emit(state.copyWith(newCreateAdsStatus: CreateAdsErrorStatus(errorMessage: result.error ?? "خطای ناشناخته ای رخ داده با پشتیبانی تماس بگیرید!")));
+    }
   }
 }
