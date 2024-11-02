@@ -56,7 +56,27 @@ class _CreateAdsViewState extends State<CreateAdsView> {
             child: CustomButtonWidget(
                 onTap: () {
                   if(formKey.currentState!.validate()) {
+                    if(createAdsRequest.cityId == null) {
+                      showCustomSnackBar(
+                          context: context,
+                          snackBar: showSnackBarWidget(
+                              message: "لطفا استان و شهر را انتخاب کنید",
+                              mode: SnackBarMode.error));
+                    } else if(createAdsRequest.categoryId == null) {
+                      showCustomSnackBar(
+                          context: context,
+                          snackBar: showSnackBarWidget(
+                              message: "لطفا دسته بندی اگهی خود را مشخص کنید",
+                              mode: SnackBarMode.error));
+                    } else if(createAdsRequest.image == null) {
+                      showCustomSnackBar(
+                          context: context,
+                          snackBar: showSnackBarWidget(
+                              message: "لطفا یک عکس برای آگهی خود انتخاب کنید",
+                              mode: SnackBarMode.error));
+                    } else {
 
+                    }
                   }
                 },
                 text: "ثبت آگهی"),
