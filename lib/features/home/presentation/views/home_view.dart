@@ -31,7 +31,7 @@ class _HomeViewState extends State<HomeView> {
     // app bar
     final Widget appBar = Container(
       width: double.infinity,
-      padding: EdgeInsets.symmetric(horizontal: 4.w, vertical: 3.w),
+      padding: EdgeInsets.only(top: 8.w,left: 6.w,right: 6.w,bottom: 2.w),
       decoration: BoxDecoration(
         color: UiColors.whiteColor,
         boxShadow: [
@@ -103,33 +103,31 @@ class _HomeViewState extends State<HomeView> {
       }
     },);
 
-    return SafeArea(
-      child: BlocConsumer<HomeCubit, HomeState>(
-        listener: (context, state) {
-          if(state.homeStatus is HomeLoadDataErrorStatus) {
-            final errorMessage = (state.homeStatus as HomeLoadDataErrorStatus).errorMessage;
-            showCustomSnackBar(context: context, snackBar: showSnackBarWidget(message: errorMessage,mode: SnackBarMode.error));
-          }
-        },
-        builder: (context, state) {
-          if(state.homeStatus is HomeLoadDataStatus) {
-            return const SizedBox(
-              width: double.infinity,
-              height: double.infinity,
-              child: Center(child: CircularProgressIndicator(),),
-            );
-          } else if(state.homeStatus is HomeLoadDataSuccessStatus) {
-            return Column(
-              children: [
-                appBar,
-                adsList
-              ],
-            );
-          } else {
-            throw Exception("state inValid.....");
-          }
-        },
-      ),
+    return BlocConsumer<HomeCubit, HomeState>(
+      listener: (context, state) {
+        if(state.homeStatus is HomeLoadDataErrorStatus) {
+          final errorMessage = (state.homeStatus as HomeLoadDataErrorStatus).errorMessage;
+          showCustomSnackBar(context: context, snackBar: showSnackBarWidget(message: errorMessage,mode: SnackBarMode.error));
+        }
+      },
+      builder: (context, state) {
+        if(state.homeStatus is HomeLoadDataStatus) {
+          return const SizedBox(
+            width: double.infinity,
+            height: double.infinity,
+            child: Center(child: CircularProgressIndicator(),),
+          );
+        } else if(state.homeStatus is HomeLoadDataSuccessStatus) {
+          return Column(
+            children: [
+              appBar,
+              adsList
+            ],
+          );
+        } else {
+          throw Exception("state inValid.....");
+        }
+      },
     );
   }
 }
