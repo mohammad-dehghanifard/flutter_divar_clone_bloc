@@ -23,7 +23,7 @@ class AdsCubit extends Cubit<AdsState> {
 
   final AdsRepository _adsRepository = AdsRepository();
 
-  Future<void> getAdsByKeyWord({required AdsParams params}) async {
+  Future<void> getAllAds({required AdsParams params}) async {
     emit(state.copyWith(newSearchStatus: AdsSearchLoading()));
     final DataState<List<AdsModel>> result = await _adsRepository.getAndFilterAdsApiCall(params: params);
     

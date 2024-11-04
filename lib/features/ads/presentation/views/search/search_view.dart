@@ -37,7 +37,7 @@ class SearchView extends StatelessWidget {
                   controller: searchController,
                   onChanged: (String? searchText) {
                     adsParams.searchKeyWord = searchText;
-                    BlocProvider.of<AdsCubit>(context).getAdsByKeyWord(params: adsParams);
+                    BlocProvider.of<AdsCubit>(context).getAllAds(params: adsParams);
                   },
                   hintText: "محصول مورد نظر خود را جستجو کنید",
                   iconPath: Assets.svgs.search,

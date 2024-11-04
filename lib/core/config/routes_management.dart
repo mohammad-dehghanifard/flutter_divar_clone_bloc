@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_divar_clone_bloc/features/ads/presentation/views/ads_list/ads_list_page.dart';
 import 'package:flutter_divar_clone_bloc/features/ads/presentation/views/create/create_ads_page.dart';
 import 'package:flutter_divar_clone_bloc/features/ads/presentation/views/detail/detail_ads_page.dart';
 import 'package:flutter_divar_clone_bloc/features/ads/presentation/views/search/search_page.dart';
@@ -28,5 +29,6 @@ class RouteManagement {
     ProfilePage.routeName: (context) => const ProfilePage(),
     EditUserPage.routeName: (context) => const EditUserPage(),
     CreateAdsPage.routeName: (context) => const CreateAdsPage(),
+    AdsListPage.routeName: (context) => const AdsListPage(),
   };
 }
