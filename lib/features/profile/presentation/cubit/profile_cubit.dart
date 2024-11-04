@@ -3,9 +3,11 @@ import 'package:flutter_divar_clone_bloc/core/common/data/model/user_model.dart'
 import 'package:flutter_divar_clone_bloc/core/common/data/responses/province_response.dart';
 import 'package:flutter_divar_clone_bloc/core/common/resources/data_state.dart';
 import 'package:flutter_divar_clone_bloc/core/utils/image/pick_image.dart';
+import 'package:flutter_divar_clone_bloc/features/ads/data/models/ads_model.dart';
 import 'package:flutter_divar_clone_bloc/features/profile/data/requests/edit_user_request.dart';
 import 'package:flutter_divar_clone_bloc/features/profile/presentation/cubit/edit_profile_status.dart';
 import 'package:flutter_divar_clone_bloc/features/profile/presentation/cubit/profile_status.dart';
+import 'package:flutter_divar_clone_bloc/features/profile/presentation/cubit/user_ads_status.dart';
 import 'package:flutter_divar_clone_bloc/features/profile/repositories/profile_repository.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -15,7 +17,8 @@ class ProfileCubit extends Cubit<ProfileState> {
   ProfileCubit() : super(
       ProfileState(
           profileStatus: ProfileInitial(),
-          editProfileStatus: ProfileInitialStatus()
+          editProfileStatus: ProfileInitialStatus(),
+          userAdsStatus: UserAdsInitialStatus()
       ));
 
   final ProfileRepository _profileRepository = ProfileRepository();
@@ -65,6 +68,19 @@ class ProfileCubit extends Cubit<ProfileState> {
     }
     if(result is DataFailed) {
       emit(state.copyWith(newEditProfileStatus: EditProfileLoadDataErrorStatus(errorMessage: result.error ?? "خطای ناشناخته ای رخ داده لطفا با پشتیبانی تماس بگیرید")));
+    }
+  }
+
+  Future<void> getAllUserAds() async {
+    emit(state.copyWith(newUserAdsStatus: UserAdsLoadingStatus()));
+    final DataState<List<AdsModel>> result = await _profileRepository.getAllUserAdsApiCall();
+
+    if(result is DataSuccess) {
+      emit(state.copyWith(newUserAdsStatus: UserAdsLoadDataSuccessStatus(adsList: result.data!)));
+    }
+
+    if(result is DataFailed) {
+      emit(state.copyWith(newUserAdsStatus: UserAdsErrorStatus(errorMessage: result.error ?? "خطای ناشناخته ای رخ داده لطفا با پشتیبانی تماس بگیرید")));
     }
   }
 }

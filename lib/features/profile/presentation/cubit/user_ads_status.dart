@@ -3,6 +3,9 @@ import 'package:flutter_divar_clone_bloc/features/ads/data/models/ads_model.dart
 
 sealed class UserAdsStatus{}
 
+final class UserAdsInitialStatus extends UserAdsStatus {}
+
+
 final class UserAdsLoadingStatus extends UserAdsStatus {}
 
 final class UserAdsLoadDataSuccessStatus extends UserAdsStatus {
