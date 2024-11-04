@@ -10,4 +10,5 @@ class EndPoints {
   static const getUserInfoEndPoints = '/profile';
   static const editUserEndPoints = '/profile';
   static const createAdsEndPoints = '/ad';
+  static const userAdsEndPoints = '/user/ads';
 }

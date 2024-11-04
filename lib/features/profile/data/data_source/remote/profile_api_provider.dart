@@ -21,4 +21,9 @@ class ProfileApiProvider {
     final response = await _webService.getRequest(endPoint: EndPoints.provinceEndPoints);
     return response;
   }
+
+  Future<Response<dynamic>> provideGetUserAdsApi() async {
+    final response = await _webService.getRequest(endPoint: EndPoints.userAdsEndPoints);
+    return response;
+  }
 }
