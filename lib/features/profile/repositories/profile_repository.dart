@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_divar_clone_bloc/core/common/data/model/user_model.dart';
 import 'package:flutter_divar_clone_bloc/core/common/data/responses/province_response.dart';
 import 'package:flutter_divar_clone_bloc/core/common/resources/data_state.dart';
+import 'package:flutter_divar_clone_bloc/features/ads/data/models/ads_model.dart';
 import 'package:flutter_divar_clone_bloc/features/profile/data/data_source/remote/profile_api_provider.dart';
 import 'package:flutter_divar_clone_bloc/features/profile/data/requests/edit_user_request.dart';
 
@@ -47,4 +48,22 @@ class ProfileRepository {
       return const DataFailed("خطای ناشناخته ای رخ داده!");
     }
   }
+
+  Future<DataState<List<AdsModel>>> getAllUserAdsApiCall() async {
+    try {
+      final Response response = await _apiProvider.provideGetUserAdsApi();
+      if(response.statusCode == 200) {
+        final List<AdsModel> adsList = [];
+        for(var item in response.data["data"]) {
+          adsList.add(AdsModel.fromJson(item));
+        }
+        return DataSuccess(adsList);
+      } else {
+        return DataFailed(response.data["message"]);
+      }
+    } catch(e) {
+      return const DataFailed("خطای ناشناخته ای رخ داده!");
+    }
+  }
+
 }
