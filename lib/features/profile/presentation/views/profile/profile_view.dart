@@ -8,6 +8,7 @@ import 'package:flutter_divar_clone_bloc/core/utils/widgets/show_snack_bar_widge
 import 'package:flutter_divar_clone_bloc/features/profile/presentation/cubit/profile_cubit.dart';
 import 'package:flutter_divar_clone_bloc/features/profile/presentation/cubit/profile_status.dart';
 import 'package:flutter_divar_clone_bloc/features/profile/presentation/views/edit_profile/edit_user_page.dart';
+import 'package:flutter_divar_clone_bloc/features/profile/presentation/views/user_ads/user_ads_page.dart';
 import 'package:flutter_divar_clone_bloc/features/profile/presentation/widgets/profile_button_widget.dart';
 import 'package:flutter_divar_clone_bloc/gen/assets.gen.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -52,12 +53,12 @@ class _ProfileViewState extends State<ProfileView> {
                     text: 'ویرایش پروفایل',
                   ),
                   ProfileButtonWidget(
-                    onTap: () {  },
+                    onTap: () { Navigator.pushNamed(context,UserAdsPage.routeName); },
                     imagePath: Assets.svgs.myAds,
                     text: 'آگهی های من',
                   ),
                   ProfileButtonWidget(
-                    onTap: () {  },
+                    onTap: () { },
                     imagePath: Assets.svgs.bookmark,
                     colorFilter: const ColorFilter.mode(UiColors.primaryColor, BlendMode.srcIn),
                     text: 'نشان ها',
