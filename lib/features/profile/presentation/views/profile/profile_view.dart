@@ -5,7 +5,6 @@ import 'package:flutter_divar_clone_bloc/core/common/constants/ui_colors.dart';
 import 'package:flutter_divar_clone_bloc/core/common/data/model/user_model.dart';
 import 'package:flutter_divar_clone_bloc/core/utils/image/load_image_network.dart';
 import 'package:flutter_divar_clone_bloc/core/utils/widgets/show_snack_bar_widget.dart';
-import 'package:flutter_divar_clone_bloc/features/profile/presentation/cubit/edit_profile_status.dart';
 import 'package:flutter_divar_clone_bloc/features/profile/presentation/cubit/profile_cubit.dart';
 import 'package:flutter_divar_clone_bloc/features/profile/presentation/cubit/profile_status.dart';
 import 'package:flutter_divar_clone_bloc/features/profile/presentation/views/edit_profile/edit_user_page.dart';
@@ -80,7 +79,7 @@ class _ProfileViewState extends State<ProfileView> {
                           borderRadius: BorderRadius.circular(4.w),
                           color: UiColors.greyColor
                       ),
-                      child: LoadNetworkImage(imageUrl: user.avatar ?? ""),
+                      child: LoadNetworkImage(imageUrl: user.avatar ?? "",radius: BorderRadius.circular(4.w),),
                     ),
                     SizedBox(height: 4.w),
                     // username
