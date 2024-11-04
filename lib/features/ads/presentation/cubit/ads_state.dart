@@ -2,11 +2,11 @@ part of 'ads_cubit.dart';
 
 
 class AdsState {
-  AdsState({required this.searchStatus,required this.createAdsStatus});
-  AdsSearchStatus searchStatus;
+  AdsState({required this.adsStatus,required this.createAdsStatus});
+  AdsStatus adsStatus;
   CreateAdsStatus createAdsStatus;
 
-  AdsState copyWith({AdsSearchStatus ? newSearchStatus,CreateAdsStatus? newCreateAdsStatus}) {
-    return AdsState(searchStatus: newSearchStatus ?? searchStatus, createAdsStatus: newCreateAdsStatus ?? createAdsStatus);
+  AdsState copyWith({AdsStatus ? newSearchStatus,CreateAdsStatus? newCreateAdsStatus}) {
+    return AdsState(adsStatus: newSearchStatus ?? adsStatus, createAdsStatus: newCreateAdsStatus ?? createAdsStatus);
   }
 }

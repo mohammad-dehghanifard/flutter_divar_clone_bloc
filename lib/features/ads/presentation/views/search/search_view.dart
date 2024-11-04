@@ -7,7 +7,7 @@ import 'package:flutter_divar_clone_bloc/core/utils/widgets/show_snack_bar_widge
 import 'package:flutter_divar_clone_bloc/features/ads/data/models/ads_model.dart';
 import 'package:flutter_divar_clone_bloc/features/ads/data/params/ads_params.dart';
 import 'package:flutter_divar_clone_bloc/features/ads/presentation/cubit/ads_cubit.dart';
-import 'package:flutter_divar_clone_bloc/features/ads/presentation/cubit/ads_search_status.dart';
+import 'package:flutter_divar_clone_bloc/features/ads/presentation/cubit/ads_status.dart';
 import 'package:flutter_divar_clone_bloc/features/ads/presentation/widgets/ads_list_item_widget.dart';
 import 'package:flutter_divar_clone_bloc/gen/assets.gen.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -24,8 +24,8 @@ class SearchView extends StatelessWidget {
         padding: const EdgeInsets.all(Distances.bodyMargin),
         child: BlocConsumer<AdsCubit, AdsState>(
           listener: (context, state) {
-            if(state.searchStatus is AdsSearchError) {
-              final errorMessage = (state.searchStatus as AdsSearchError).errorMessage;
+            if(state.adsStatus is AdsError) {
+              final errorMessage = (state.adsStatus as AdsError).errorMessage;
               showCustomSnackBar(context: context, snackBar: showSnackBarWidget(message: errorMessage,mode: SnackBarMode.error));
             }
           },
@@ -45,26 +45,26 @@ class SearchView extends StatelessWidget {
                       UiColors.primaryColor, BlendMode.srcIn),
                 ),
                 // init page
-                if(state.searchStatus is AdsSearchInitial)...[
+                if(state.adsStatus is AdsInitial)...[
                   const Spacer(),
                   const Text("محصول مورد نظر خود را به راحتی پیدا کنید!"),
                   const Spacer(),
                 ],
 
 
-                if(state.searchStatus is AdsSearchLoading)...[
+                if(state.adsStatus is AdsLoading)...[
                   const Spacer(),
                   const CircularProgressIndicator(),
                   const Spacer(),
                 ],
 
 
-                if(state.searchStatus is AdsSearchLoadDataCompleted)...[
+                if(state.adsStatus is AdsLoadDataCompleted)...[
                   Expanded(
-                    child: (state.searchStatus as AdsSearchLoadDataCompleted).adsList.isNotEmpty ? ListView.builder(
-                      itemCount: (state.searchStatus as AdsSearchLoadDataCompleted).adsList.length,
+                    child: (state.adsStatus as AdsLoadDataCompleted).adsList.isNotEmpty ? ListView.builder(
+                      itemCount: (state.adsStatus as AdsLoadDataCompleted).adsList.length,
                         itemBuilder: (context, index) {
-                          AdsModel ads = (state.searchStatus as AdsSearchLoadDataCompleted).adsList[index];
+                          AdsModel ads = (state.adsStatus as AdsLoadDataCompleted).adsList[index];
                           return Padding(
                             padding:  EdgeInsets.only(bottom: 6.w,top: index == 0 ? 4.5.w : 0),
                             child: AdsListItemWidget(ads: ads,margin: 0),

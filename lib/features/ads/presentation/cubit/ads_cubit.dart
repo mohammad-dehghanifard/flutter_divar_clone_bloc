@@ -6,7 +6,7 @@ import 'package:flutter_divar_clone_bloc/core/utils/image/pick_image.dart';
 import 'package:flutter_divar_clone_bloc/features/ads/data/models/ads_model.dart';
 import 'package:flutter_divar_clone_bloc/features/ads/data/params/ads_params.dart';
 import 'package:flutter_divar_clone_bloc/features/ads/data/requests/create_ads_request.dart';
-import 'package:flutter_divar_clone_bloc/features/ads/presentation/cubit/ads_search_status.dart';
+import 'package:flutter_divar_clone_bloc/features/ads/presentation/cubit/ads_status.dart';
 import 'package:flutter_divar_clone_bloc/features/ads/presentation/cubit/create_ads_status.dart';
 import 'package:flutter_divar_clone_bloc/features/ads/repositories/ads_repository.dart';
 import 'package:flutter_divar_clone_bloc/features/category/data/models/category_model.dart';
@@ -17,22 +17,22 @@ part 'ads_state.dart';
 
 class AdsCubit extends Cubit<AdsState> {
   AdsCubit() : super(AdsState(
-      searchStatus: AdsSearchInitial(),
+      adsStatus: AdsInitial(),
     createAdsStatus: CreateAdsInitial()
   ));
 
   final AdsRepository _adsRepository = AdsRepository();
 
   Future<void> getAllAds({required AdsParams params}) async {
-    emit(state.copyWith(newSearchStatus: AdsSearchLoading()));
+    emit(state.copyWith(newSearchStatus: AdsLoading()));
     final DataState<List<AdsModel>> result = await _adsRepository.getAndFilterAdsApiCall(params: params);
     
     if(result is DataSuccess) {
-      emit(state.copyWith(newSearchStatus: AdsSearchLoadDataCompleted(adsList: result.data!)));
+      emit(state.copyWith(newSearchStatus: AdsLoadDataCompleted(adsList: result.data!)));
     }
     
     if(result is DataFailed) {
-      emit(state.copyWith(newSearchStatus: AdsSearchError(errorMessage: result.error ?? "خظای ناشناخته ای رخ داده،لطفا با پشتیبانی تماس بگیرید!")));
+      emit(state.copyWith(newSearchStatus: AdsError(errorMessage: result.error ?? "خظای ناشناخته ای رخ داده،لطفا با پشتیبانی تماس بگیرید!")));
     }
   }
 

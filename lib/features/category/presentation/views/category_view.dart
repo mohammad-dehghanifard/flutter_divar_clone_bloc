@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_divar_clone_bloc/core/common/constants/distances.dart';
+import 'package:flutter_divar_clone_bloc/features/ads/data/params/ads_params.dart';
+import 'package:flutter_divar_clone_bloc/features/ads/presentation/views/ads_list/ads_list_page.dart';
 import 'package:flutter_divar_clone_bloc/features/category/presentation/cubit/category_cubit.dart';
 import 'package:flutter_divar_clone_bloc/features/category/presentation/cubit/category_status.dart';
 import 'package:flutter_divar_clone_bloc/features/category/presentation/widgets/category_list_item_widget.dart';
@@ -37,7 +39,10 @@ class _CategoryViewState extends State<CategoryView> {
               padding: const EdgeInsets.all(Distances.bodyMargin),
               child: ListView.builder(
                   itemCount: categoryList.length,
-                  itemBuilder: (context, index) => CategoryListItemWidget(category: categoryList[index], onTap: () {  },),
+                  itemBuilder: (context, index) => CategoryListItemWidget(category: categoryList[index], onTap: () {
+                    final AdsParams adsParams = AdsParams(categoryId: categoryList[index].id);
+                    Navigator.pushNamed(context, AdsListPage.routeName,arguments: adsParams);
+                  },),
               ),
             );
 
