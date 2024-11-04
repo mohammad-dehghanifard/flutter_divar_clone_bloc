@@ -46,6 +46,15 @@ class _CreateAdsViewState extends State<CreateAdsView> {
           final errorMessage = (state.createAdsStatus as CreateAdsErrorStatus).errorMessage;
           showCustomSnackBar(context: context, snackBar: showSnackBarWidget(message: errorMessage,mode: SnackBarMode.error));
         }
+
+        if(state.createAdsStatus is CreateAdsSuccessStatus) {
+          Navigator.pop(context);
+          showCustomSnackBar(
+              context: context,
+              snackBar: showSnackBarWidget(
+                  message: "آگهی شما پس از تایید مدیریت منتشر خواهد شد!",));
+
+        }
       },
       builder: (context, state) {
         final adsCubit = BlocProvider.of<AdsCubit>(context);
@@ -75,7 +84,7 @@ class _CreateAdsViewState extends State<CreateAdsView> {
                               message: "لطفا یک عکس برای آگهی خود انتخاب کنید",
                               mode: SnackBarMode.error));
                     } else {
-
+                      adsCubit.createNewAds(request: createAdsRequest);
                     }
                   }
                 },
@@ -195,6 +204,7 @@ class _CreateAdsViewState extends State<CreateAdsView> {
                                     onCityTap: (ProvinceModel province, CityModel city) {
                                     createAdsRequest.adsProvinceTxt.text = province.name!;
                                     createAdsRequest.adsCityTxt.text = city.name!;
+                                    createAdsRequest.cityId = city.id;
                                     Navigator.pop(context);
                                     },);
                                 },);
