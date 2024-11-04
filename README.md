@@ -1,9 +1,12 @@
-# flutter_divar_clone_bloc
+# توضیحات
 
-A clone of divar application developed with Dart programming language and Flutter framework.
+اپلیکیشنن نیازمندی ها توسعه داده شده با زبان برنامه نویسی دارت ، فریم ورک فلاتر و استیت منیجمنت BLoc.
 
 
-## Screen Shot
+
+<a href="https://www.coffeebede.com/novadevteam"><img class="img-fluid" src="https://coffeebede.ir/DashboardTemplateV2/app-assets/images/banner/default-yellow.svg" /></a>
+
+## اسکرین شات ها
 
 <img src="https://github.com/user-attachments/assets/a9e2f3bc-ba76-4fb0-bd4e-3253cd277834" width="250">
 <img src="https://github.com/user-attachments/assets/2416c52c-3633-4969-8d62-2a01ba1dde82" width="250">
