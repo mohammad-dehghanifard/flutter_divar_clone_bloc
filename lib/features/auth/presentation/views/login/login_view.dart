@@ -11,6 +11,7 @@ import 'package:flutter_divar_clone_bloc/features/auth/presentation/cubit/login/
 import 'package:flutter_divar_clone_bloc/features/auth/presentation/views/register/register_page.dart';
 import 'package:flutter_divar_clone_bloc/features/auth/presentation/widgets/auth_app_bar_widget.dart';
 import 'package:flutter_divar_clone_bloc/features/home/presentation/views/home_page.dart';
+import 'package:flutter_divar_clone_bloc/features/main/presentation/views/main_page.dart';
 import 'package:flutter_divar_clone_bloc/gen/assets.gen.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
@@ -74,7 +75,7 @@ class LoginView extends StatelessWidget {
               final errorMessage = (state.loginStatus as LoginError).errorMessage;
               showCustomSnackBar(context: context, snackBar: showSnackBarWidget(message: errorMessage,mode: SnackBarMode.error));
             } else if(state.loginStatus is LoginSuccess) {
-              Navigator.pushReplacementNamed(context, HomePage.routeName);
+              Navigator.pushReplacementNamed(context, MainPage.routeName);
               showCustomSnackBar(context: context, snackBar: showSnackBarWidget(message: "با موفقیت وارد شدید!"));
 
             }
